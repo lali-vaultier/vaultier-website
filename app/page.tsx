@@ -39,15 +39,6 @@ function VltrMobilePaths({ prefix }: { prefix: string }) {
   );
 }
 
-function PaperFrame() {
-  return (
-    <svg className="paper-frame" width="100%" height="100%" aria-hidden="true">
-      <rect className="paper-frame-shadow" x="5%" y="6%" width="90%" height="88%" />
-      <rect className="paper-frame-highlight" x="5.15%" y="6.15%" width="89.7%" height="87.7%" />
-    </svg>
-  );
-}
-
 function LetterpressDefinitions() {
   return (
     <svg className="letterpress-definitions" aria-hidden="true" focusable="false">
@@ -90,7 +81,8 @@ function LetterpressDefinitions() {
 export default function Home() {
   const experience = useRef<HTMLElement>(null);
   const openingPaper = useRef<HTMLDivElement>(null);
-  const textileCopy = useRef<HTMLDivElement>(null);
+  const textileCopyOne = useRef<HTMLDivElement>(null);
+  const textileCopyTwo = useRef<HTMLDivElement>(null);
   const finalPaper = useRef<HTMLDivElement>(null);
   const invitationCopy = useRef<HTMLDivElement>(null);
   const [openingInteractive, setOpeningInteractive] = useState(true);
@@ -118,18 +110,20 @@ export default function Home() {
           scrub: 0.65,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            setOpeningInteractive(self.progress < 0.34);
-            setInvitationVisible(self.progress > 0.86);
+            setOpeningInteractive(self.progress < 0.25);
+            setInvitationVisible(self.progress > 0.87);
           },
         },
       });
 
       timeline
-        .to(openingPaper.current, { yPercent: -104, duration: 0.48 }, 0)
-        .fromTo(textileCopy.current, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.12 }, 0.48)
-        .to(textileCopy.current, { opacity: 0, y: -10, duration: 0.1 }, 0.8)
-        .fromTo(finalPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.12 }, 0.87)
-        .fromTo(invitationCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.1 }, 0.9);
+        .to(openingPaper.current, { yPercent: -104, duration: 0.26 }, 0)
+        .fromTo(textileCopyOne.current, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.08 }, 0.24)
+        .to(textileCopyOne.current, { autoAlpha: 0, y: -10, duration: 0.08 }, 0.5)
+        .fromTo(textileCopyTwo.current, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.08 }, 0.58)
+        .to(textileCopyTwo.current, { autoAlpha: 0, y: -10, duration: 0.08 }, 0.8)
+        .fromTo(finalPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0.87)
+        .fromTo(invitationCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.08 }, 0.9);
     }, experience);
 
     return () => context.revert();
@@ -142,7 +136,6 @@ export default function Home() {
         <div className="textile" aria-hidden="true" />
 
         <div ref={openingPaper} className="opening-paper">
-          <PaperFrame />
           <div className="opening-paper-content">
             <svg
               className="blind-deboss-mark blind-deboss-mark-desktop"
@@ -151,10 +144,10 @@ export default function Home() {
               aria-label="Vaultier abbreviation"
               preserveAspectRatio="xMidYMid meet"
             >
-              <g className="blind-deboss-mark-highlight" transform="translate(-0.65 -0.72)">
+              <g className="blind-deboss-mark-highlight" transform="translate(0.65 0.72)">
                 <VltrDesktopPaths prefix="deboss-highlight" />
               </g>
-              <g className="blind-deboss-mark-shadow" transform="translate(0.68 0.76)">
+              <g className="blind-deboss-mark-shadow" transform="translate(-0.68 -0.76)">
                 <VltrDesktopPaths prefix="deboss-shadow" />
               </g>
               <g className="blind-deboss-mark-face">
@@ -168,10 +161,10 @@ export default function Home() {
               aria-label="Vaultier abbreviation"
               preserveAspectRatio="xMidYMid meet"
             >
-              <g className="blind-deboss-mark-highlight" transform="translate(-0.65 -0.72)">
+              <g className="blind-deboss-mark-highlight" transform="translate(0.65 0.72)">
                 <VltrMobilePaths prefix="deboss-mobile-highlight" />
               </g>
-              <g className="blind-deboss-mark-shadow" transform="translate(0.68 0.76)">
+              <g className="blind-deboss-mark-shadow" transform="translate(-0.68 -0.76)">
                 <VltrMobilePaths prefix="deboss-mobile-shadow" />
               </g>
               <g className="blind-deboss-mark-face">
@@ -180,44 +173,46 @@ export default function Home() {
             </svg>
 
             <nav className="home-primary-nav" aria-label="Primary navigation">
-              <Link href="/about" className="blind-press-link" tabIndex={openingInteractive ? 0 : -1}>
-                <span>About</span>
-              </Link>
               <Link href="/private-enquiry" className="blind-press-link" tabIndex={openingInteractive ? 0 : -1}>
                 <span>Private Enquiry</span>
               </Link>
             </nav>
           </div>
-
-          <nav className="home-legal-nav" aria-label="Legal navigation">
-            <Link href="/privacy" tabIndex={openingInteractive ? 0 : -1}>Privacy</Link>
-            <Link href="/terms" tabIndex={openingInteractive ? 0 : -1}>Terms</Link>
-          </nav>
         </div>
 
-        <div ref={textileCopy} className="editorial-copy opening-copy" aria-hidden="true">
-          <p className="eyebrow">Private collection stewardship</p>
-          <h1>An extraordinary collection<br />deserves extraordinary care.</h1>
+        <section ref={textileCopyOne} className="editorial-copy opening-copy textile-chapter" aria-labelledby="privacy-heading">
+          <p className="eyebrow">Privacy is at the heart of what we do.</p>
+          <h1 id="privacy-heading">A private collection manager for valuable pieces</h1>
           <p className="body-copy">
-            Vaultier creates and maintains a lasting record of every piece, coordinating the documentation,
-            protection and specialist care your collection requires.
+            A valuable collection accumulates faster than the paperwork around it. Pieces move, values change, and
+            the details end up spread across people and places. Vaultier gives every piece a permanent, dynamic
+            record and coordinates the valuers, insurers, restorers and specialists who work on it, so the collection
+            is looked after without the collector having to.
           </p>
-        </div>
+        </section>
+
+        <section ref={textileCopyTwo} className="editorial-copy opening-copy textile-chapter" aria-labelledby="people-heading">
+          <p className="eyebrow">For the people who look after it</p>
+          <h2 id="people-heading">Much of a collection is managed by someone trusted to hold it together</h2>
+          <p className="body-copy">
+            Vaultier is built for them too: trustees, personal assistants and family offices who keep a collection in
+            order on the collector&apos;s behalf, with the access they need and nothing they don&apos;t.
+          </p>
+        </section>
 
         <div ref={finalPaper} className={`final-paper${invitationVisible ? " is-active" : ""}`} aria-hidden={!invitationVisible}>
-          <PaperFrame />
           <div ref={invitationCopy} className="editorial-copy invitation-copy">
-            <h2>A more considered<br />way to own.</h2>
+            <p className="eyebrow">How we work</p>
+            <h2>Vaultier&apos;s technology monitors and manages the collection</h2>
             <p className="body-copy">
-              From insurance and valuations to ongoing care and preservation, Vaultier manages the details so you
-              can simply enjoy what you own.
+              The team provides the judgement and discretion that technology cannot. Membership is by application.
+              Vaultier accepts a limited number of collections so each is looked after properly.
             </p>
             <Link href="/private-enquiry" className="invitation-link" tabIndex={invitationVisible ? 0 : -1}>
-              <span>Request a Private Invitation</span>
+              <span>Enquire Privately</span>
             </Link>
           </div>
           <nav className="final-paper-nav" aria-label="Website navigation">
-            <Link href="/about" tabIndex={invitationVisible ? 0 : -1}>About</Link>
             <Link href="/privacy" tabIndex={invitationVisible ? 0 : -1}>Privacy</Link>
             <Link href="/terms" tabIndex={invitationVisible ? 0 : -1}>Terms</Link>
           </nav>

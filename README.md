@@ -12,7 +12,8 @@ The website is built as a standalone Next.js application and is ready for deploy
 - Vertical VLTR arrangement on mobile
 - Textured buttercream cardstock and the approved deep-teal textile imagery
 - Final printed invitation with a working application CTA
-- About, Private Enquiry, Privacy Policy and Terms of Use routes
+- Two scroll-revealed editorial chapters on the deep-teal textile
+- Private Enquiry, Privacy Policy and Terms of Use routes
 - Private enquiry form with its existing fields and submission handling preserved
 - Server-side form validation
 - Webhook-ready submission endpoint
@@ -103,7 +104,6 @@ Runs the production build locally after `npm run build`.
 | Route | Purpose |
 |---|---|
 | `/` | Interactive Vaultier invitation |
-| `/about` | About Vaultier editorial page |
 | `/private-enquiry` | Public enquiry form |
 | `/request-invitation` | Redirects legacy links to `/private-enquiry` |
 | `/privacy` | Draft Privacy Policy placeholder pending approved legal copy |
@@ -112,7 +112,7 @@ Runs the production build locally after `npm run build`.
 
 ## Content Status
 
-The three approved About section headings are in place. Their body copy has intentionally not been invented and should be added when Vaultier supplies the final wording. The Privacy Policy and Terms of Use pages are also clearly labelled draft placeholders until approved legal copy is provided.
+The approved editorial copy is part of the homepage invitation experience: two chapters appear over the deep-teal textile as the visitor scrolls, followed by the final cardstock invitation. The Privacy Policy and Terms of Use pages remain clearly labelled draft placeholders until approved legal copy is provided.
 
 ## Environment Variables
 

@@ -10,6 +10,7 @@
   --off-white: #f6f4f2;
   --paper: var(--butter-cream);
   --font-ui: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: var(--font-open-sauce), "Open Sauce Two", "Helvetica Neue", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -40,21 +41,6 @@ a { color: inherit; }
   background-size: auto, 1120px auto;
 }
 
-.paper-frame {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-.paper-frame-shadow,
-.paper-frame-highlight {
-  fill: none;
-  vector-effect: non-scaling-stroke;
-}
-.paper-frame-shadow { stroke: rgba(66, 51, 31, .14); stroke-width: 1.1; }
-.paper-frame-highlight { stroke: rgba(255, 255, 255, .52); stroke-width: .8; }
 .letterpress-definitions {
   position: absolute;
   width: 0;
@@ -64,7 +50,7 @@ a { color: inherit; }
 }
 
 /* Homepage invitation */
-.experience { height: 500vh; background: var(--deep-teal-blue); }
+.experience { height: 650vh; background: var(--deep-teal-blue); }
 .invitation-stage {
   position: sticky;
   top: 0;
@@ -118,11 +104,11 @@ a { color: inherit; }
   text-rendering: geometricPrecision;
 }
 .blind-deboss-mark-mobile { display: none; }
-.blind-deboss-mark-highlight { fill: rgba(255, 252, 246, .7); }
-.blind-deboss-mark-shadow { fill: rgba(66, 51, 31, .19); }
+.blind-deboss-mark-highlight { fill: rgba(255, 252, 246, .62); }
+.blind-deboss-mark-shadow { fill: rgba(66, 51, 31, .22); }
 .blind-deboss-mark-face {
-  fill: color-mix(in srgb, var(--butter-cream) 82%, var(--murky-grey));
-  opacity: .82;
+  fill: color-mix(in srgb, var(--butter-cream) 88%, var(--murky-grey));
+  opacity: .72;
 }
 .home-primary-nav {
   display: flex;
@@ -152,7 +138,7 @@ a { color: inherit; }
   text-transform: uppercase;
   transition: color .2s ease, transform .2s ease;
 }
-.blind-press-link { min-width: 158px; padding: 15px 24px; }
+.blind-press-link { min-width: 188px; padding: 15px 24px; color: var(--deep-teal-blue); }
 .blind-press-link::before,
 .invitation-link::before,
 .submit-button::before {
@@ -171,6 +157,7 @@ a { color: inherit; }
 .blind-press-link:hover,
 .invitation-link:hover,
 .submit-button:hover:not(:disabled) { color: color-mix(in srgb, var(--olive-green) 82%, var(--wild-brown)); }
+.blind-press-link:hover { color: color-mix(in srgb, var(--deep-teal-blue) 84%, var(--murky-grey)); }
 .blind-press-link:hover::before,
 .invitation-link:hover::before,
 .submit-button:hover:not(:disabled)::before {
@@ -184,7 +171,6 @@ a { color: inherit; }
 .blind-press-link:focus-visible,
 .invitation-link:focus-visible,
 .submit-button:focus-visible,
-.home-legal-nav a:focus-visible,
 .final-paper-nav a:focus-visible,
 .secondary-header a:focus-visible,
 .site-footer a:focus-visible,
@@ -193,7 +179,6 @@ a { color: inherit; }
   outline: 1px solid currentColor;
   outline-offset: 6px;
 }
-.home-legal-nav,
 .final-paper-nav {
   position: absolute;
   z-index: 2;
@@ -207,7 +192,6 @@ a { color: inherit; }
   letter-spacing: .13em;
   text-transform: uppercase;
 }
-.home-legal-nav a,
 .final-paper-nav a { text-decoration: none; }
 
 .editorial-copy {
@@ -246,8 +230,6 @@ a { color: inherit; }
 .editorial-copy h1,
 .editorial-copy h2,
 .form-header h1,
-.about-introduction h1,
-.about-section h2,
 .legal-document h1,
 .legal-placeholder h2 {
   margin: 0;
@@ -265,6 +247,21 @@ a { color: inherit; }
   font-weight: 300;
   line-height: 1.65;
 }
+.textile-chapter {
+  width: min(1080px, 86vw);
+  visibility: hidden;
+}
+.textile-chapter h1,
+.textile-chapter h2 {
+  max-width: 1050px;
+  margin-inline: auto;
+  font-size: clamp(52px, 5.5vw, 86px);
+}
+.textile-chapter .body-copy,
+.invitation-copy .body-copy {
+  font-family: var(--font-body);
+}
+.textile-chapter .body-copy { width: min(720px, 78vw); }
 .final-paper {
   position: absolute;
   z-index: 6;
@@ -280,9 +277,11 @@ a { color: inherit; }
   width: min(860px, 80vw);
   color: var(--deep-teal-blue);
 }
+.invitation-copy .eyebrow,
 .invitation-copy h2,
 .invitation-copy .body-copy { filter: url(#letterpress-display); text-rendering: geometricPrecision; }
-.invitation-copy h2 { color: var(--deep-teal-blue); font-size: clamp(50px, 5.45vw, 82px); line-height: .98; }
+.invitation-copy .eyebrow { color: color-mix(in srgb, var(--deep-teal-blue) 74%, var(--murky-grey)); }
+.invitation-copy h2 { color: var(--deep-teal-blue); font-size: clamp(48px, 5vw, 76px); line-height: .98; }
 .invitation-copy .body-copy {
   width: min(540px, 72vw);
   margin-top: 32px;
@@ -330,45 +329,9 @@ a { color: inherit; }
 .site-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 18px 28px; }
 .site-footer a { color: color-mix(in srgb, var(--deep-teal-blue) 72%, var(--murky-grey)); }
 
-/* About */
+/* Secondary editorial and legal pages */
 .editorial-page,
 .legal-page { min-height: 100svh; }
-.about-introduction {
-  display: grid;
-  align-content: end;
-  min-height: 58svh;
-  padding: clamp(90px, 13vw, 180px) clamp(24px, 9vw, 150px) clamp(70px, 9vw, 128px);
-}
-.about-introduction .eyebrow { color: var(--olive-green); }
-.about-introduction h1 {
-  max-width: 980px;
-  color: var(--deep-teal-blue);
-  font-size: clamp(58px, 8vw, 122px);
-  line-height: .92;
-}
-.about-sections { padding: 0 clamp(24px, 9vw, 150px) clamp(70px, 10vw, 150px); }
-.about-section {
-  display: grid;
-  grid-template-columns: minmax(48px, .25fr) minmax(0, 1.5fr) minmax(170px, .5fr);
-  align-items: start;
-  gap: clamp(20px, 4vw, 70px);
-  min-height: 55svh;
-  padding: clamp(64px, 9vw, 128px) 0;
-  border-top: 1px solid rgba(66, 51, 31, .18);
-}
-.about-section-number {
-  margin: .8em 0 0;
-  color: var(--murky-grey);
-  font-size: 9px;
-  letter-spacing: .15em;
-}
-.about-section h2 {
-  max-width: 820px;
-  color: var(--deep-teal-blue);
-  font-size: clamp(48px, 6.6vw, 98px);
-  line-height: .95;
-}
-.about-cta { align-self: end; justify-self: end; margin-top: 18px; padding: 15px 26px; white-space: nowrap; }
 
 /* Legal placeholders */
 .legal-document {
@@ -532,25 +495,18 @@ a { color: inherit; }
   .editorial-copy { width: 86vw; }
   .editorial-copy h1,
   .editorial-copy h2 { font-size: clamp(46px, 13vw, 66px); line-height: .92; }
+  .textile-chapter { width: 88vw; }
+  .textile-chapter h1,
+  .textile-chapter h2 { font-size: clamp(42px, 11.2vw, 58px); line-height: .94; }
+  .textile-chapter .body-copy { width: 84vw; font-size: 13px; line-height: 1.58; }
   .body-copy { width: 82vw; margin-top: 24px; }
   .invitation-copy { width: 86vw; }
   .invitation-copy h2 { font-size: clamp(45px, 11.5vw, 60px); line-height: .96; }
   .invitation-copy .body-copy { width: 80vw; margin-top: 28px; }
   .invitation-link { margin-top: 34px; padding: 14px 22px; }
-  .home-legal-nav,
   .final-paper-nav { bottom: 20px; }
   .secondary-header { min-height: 82px; padding: 20px 22px; }
   .secondary-navigation { gap: 18px; }
-  .about-introduction { min-height: 50svh; padding: 92px 24px 66px; }
-  .about-introduction h1 { font-size: clamp(54px, 15vw, 78px); }
-  .about-sections { padding: 0 24px 72px; }
-  .about-section {
-    grid-template-columns: 32px minmax(0, 1fr);
-    min-height: 48svh;
-    padding: 66px 0;
-  }
-  .about-section h2 { font-size: clamp(44px, 12.5vw, 64px); }
-  .about-cta { grid-column: 2; justify-self: start; margin-top: 38px; }
   .legal-document { width: min(100% - 48px, 760px); min-height: calc(100svh - 170px); padding: 84px 0; }
   .legal-placeholder { grid-template-columns: 1fr; margin-top: 70px; }
   .site-footer { align-items: flex-start; padding: 30px 22px; }
@@ -568,11 +524,11 @@ a { color: inherit; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .experience { height: auto; }
   .invitation-stage { position: relative; height: auto; overflow: visible; }
-  .textile { position: absolute; inset: 100svh 0 auto; height: 100svh; }
+  .textile { position: absolute; inset: 100svh 0 auto; height: 200svh; }
   .opening-paper,
-  .opening-copy,
+  .textile-chapter,
   .final-paper { position: relative; min-height: 100svh; transform: none !important; }
-  .opening-copy { background: rgba(5, 18, 23, .28); opacity: 1 !important; }
+  .textile-chapter { background: rgba(5, 18, 23, .28); visibility: visible !important; opacity: 1 !important; }
   .final-paper { visibility: visible !important; opacity: 1 !important; pointer-events: auto; }
   .final-paper .editorial-copy { opacity: 1 !important; transform: none !important; }
 }

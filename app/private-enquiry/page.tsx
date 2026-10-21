@@ -13,7 +13,6 @@ export default function PrivateEnquiryPage() {
     <main className="form-page">
       <nav className="form-route-nav" aria-label="Website navigation">
         <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>
       </nav>

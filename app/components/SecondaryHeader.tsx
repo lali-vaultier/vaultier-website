@@ -8,7 +8,6 @@ export default function SecondaryHeader() {
         <Image src="/brand/vaultier-logomark.svg" alt="" width={44} height={44} priority />
       </Link>
       <nav className="secondary-navigation" aria-label="Primary navigation">
-        <Link href="/about">About</Link>
         <Link href="/private-enquiry">Private Enquiry</Link>
       </nav>
     </header>

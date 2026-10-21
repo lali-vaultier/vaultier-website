@@ -8,7 +8,6 @@ export default function SiteFooter() {
         <Image src="/brand/vaultier-logomark.svg" alt="" width={32} height={32} />
       </Link>
       <nav aria-label="Footer navigation">
-        <Link href="/about">About</Link>
         <Link href="/private-enquiry">Private Enquiry</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>

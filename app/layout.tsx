@@ -12,6 +12,15 @@ const editorsNote = localFont({
   fallback: ["Georgia", "serif"],
 });
 
+const openSauce = localFont({
+  src: "./fonts/open-sauce-two-light.ttf",
+  variable: "--font-open-sauce",
+  display: "swap",
+  weight: "300",
+  preload: true,
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
+});
+
 export function generateMetadata(): Metadata {
   const origin = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -29,7 +38,7 @@ export function generateMetadata(): Metadata {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={editorsNote.variable}>
+    <html lang="en-GB" className={`${editorsNote.variable} ${openSauce.variable}`}>
       <body>{children}</body>
     </html>
   );
