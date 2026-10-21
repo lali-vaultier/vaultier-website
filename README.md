@@ -1,4 +1,4 @@
-# Vaultier Private Invitation
+# Vaultier Website
 
 An interactive, responsive private-invitation experience for Vaultier, designed to feel like a piece of tactile luxury stationery.
 
@@ -7,12 +7,13 @@ The website is built as a standalone Next.js application and is ready for deploy
 ## Features
 
 - Scroll-driven invitation reveal using GSAP ScrollTrigger
-- Physical VLTR die-cut effect using the supplied brand artwork
+- Blind-debossed VLTR impression using the supplied brand artwork
 - Responsive desktop and mobile compositions
 - Vertical VLTR arrangement on mobile
-- Textured buttercream cardstock and olive textile imagery
+- Textured buttercream cardstock and the approved deep-teal textile imagery
 - Final printed invitation with a working application CTA
-- Private invitation application form
+- About, Private Enquiry, Privacy Policy and Terms of Use routes
+- Private enquiry form with its existing fields and submission handling preserved
 - Server-side form validation
 - Webhook-ready submission endpoint
 - Local font and image assets
@@ -102,8 +103,16 @@ Runs the production build locally after `npm run build`.
 | Route | Purpose |
 |---|---|
 | `/` | Interactive Vaultier invitation |
-| `/request-invitation` | Public application form |
+| `/about` | About Vaultier editorial page |
+| `/private-enquiry` | Public enquiry form |
+| `/request-invitation` | Redirects legacy links to `/private-enquiry` |
+| `/privacy` | Draft Privacy Policy placeholder pending approved legal copy |
+| `/terms` | Draft Terms of Use placeholder pending approved legal copy |
 | `/api/request-invitation` | Server-side form submission endpoint |
+
+## Content Status
+
+The three approved About section headings are in place. Their body copy has intentionally not been invented and should be added when Vaultier supplies the final wording. The Privacy Policy and Terms of Use pages are also clearly labelled draft placeholders until approved legal copy is provided.
 
 ## Environment Variables
 
@@ -130,7 +139,7 @@ Only variables prefixed with `NEXT_PUBLIC_` are exposed to the browser.
 
 ## Form Submission Behaviour
 
-The application form submits JSON to:
+The Private Enquiry form submits JSON to the existing endpoint:
 
 ```text
 POST /api/request-invitation
@@ -230,7 +239,7 @@ public/brand/vaultier-logomark.svg
 
 The original SVG proportions and paths should be preserved.
 
-The VLTR abbreviation is also used as the exact geometry of the opening invitation’s die-cut mask.
+The VLTR abbreviation is used as the exact geometry of the opening invitation’s blind-debossed impression.
 
 ## Local Font
 
@@ -254,7 +263,7 @@ Important current assets include:
 
 ```text
 public/images/vaultier-buttercream-fine-cardstock.jpg
-public/images/vaultier-olive-organic-inlay.jpg
+public/images/vaultier-deep-teal-textile.jpg
 ```
 
 Keep production images compressed and appropriately sized to avoid unnecessary loading time.
