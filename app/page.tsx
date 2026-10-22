@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -88,6 +88,20 @@ export default function Home() {
   const [openingInteractive, setOpeningInteractive] = useState(true);
   const [invitationVisible, setInvitationVisible] = useState(false);
 
+  const handleAboutClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      textileCopyOne.current?.scrollIntoView({ block: "start" });
+    } else if (experience.current) {
+      const scrollDistance = Math.max(0, experience.current.scrollHeight - window.innerHeight);
+      window.scrollTo({
+        top: experience.current.offsetTop + scrollDistance * 0.3,
+        behavior: "auto",
+      });
+    }
+  };
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -172,15 +186,15 @@ export default function Home() {
               </g>
             </svg>
 
-            <nav className="home-primary-nav" aria-label="Primary navigation">
-              <Link href="/private-enquiry" className="blind-press-link" tabIndex={openingInteractive ? 0 : -1}>
-                <span>Private Enquiry</span>
-              </Link>
-            </nav>
           </div>
+          <nav className="opening-paper-nav" aria-label="Opening navigation">
+            <a href="#about" onClick={handleAboutClick} tabIndex={openingInteractive ? 0 : -1}>About</a>
+            <span aria-hidden="true">|</span>
+            <Link href="/private-enquiry" tabIndex={openingInteractive ? 0 : -1}>Private Enquiry</Link>
+          </nav>
         </div>
 
-        <section ref={textileCopyOne} className="editorial-copy opening-copy textile-chapter" aria-labelledby="privacy-heading">
+        <section id="about" ref={textileCopyOne} className="editorial-copy opening-copy textile-chapter" aria-labelledby="privacy-heading">
           <p className="eyebrow">Privacy is at the heart of what we do.</p>
           <h1 id="privacy-heading">A private collection manager for valuable pieces</h1>
           <p className="body-copy">
