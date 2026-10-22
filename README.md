@@ -107,12 +107,12 @@ Runs the production build locally after `npm run build`.
 | `/private-enquiry` | Public enquiry form |
 | `/request-invitation` | Redirects legacy links to `/private-enquiry` |
 | `/privacy` | Draft Privacy Policy placeholder pending approved legal copy |
-| `/terms` | Draft Terms of Use placeholder pending approved legal copy |
+| `/terms` | Vaultier Terms of Use |
 | `/api/request-invitation` | Server-side form submission endpoint |
 
 ## Content Status
 
-The approved editorial copy is part of the homepage invitation experience: two chapters appear over the deep-teal textile as the visitor scrolls, followed by the final cardstock invitation. The Privacy Policy and Terms of Use pages remain clearly labelled draft placeholders until approved legal copy is provided.
+The approved editorial copy is part of the homepage invitation experience: two chapters appear over the deep-teal textile as the visitor scrolls, followed by the final cardstock invitation. The supplied Terms of Use is published at `/terms` with its legal placeholders retained for completion; the Privacy Policy remains a clearly labelled draft placeholder until its approved copy is integrated.
 
 ## Environment Variables
 
