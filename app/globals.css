@@ -65,8 +65,9 @@ a { color: inherit; }
   inset: 0;
   background-color: var(--deep-teal-blue);
   background-image:
-    linear-gradient(rgba(15, 42, 54, .08), rgba(15, 42, 54, .16)),
+    linear-gradient(var(--deep-teal-blue), var(--deep-teal-blue)),
     url("/images/vaultier-deep-teal-textile.jpg");
+  background-blend-mode: color, normal;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
