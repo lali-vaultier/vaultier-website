@@ -13,16 +13,15 @@ export default function PrivacyPage() {
       <SecondaryHeader />
       <article className="legal-document">
         <header className="legal-introduction">
-          <p className="eyebrow">Approved Legal Content Forthcoming</p>
           <h1>Privacy Policy</h1>
           <dl className="legal-dates">
             <div>
               <dt>Effective date</dt>
-              <dd>[Date of publication]</dd>
+              <dd>22 Oct 2026</dd>
             </div>
             <div>
               <dt>Last updated</dt>
-              <dd>[Date]</dd>
+              <dd>22 Oct 2026</dd>
             </div>
           </dl>
         </header>
@@ -35,7 +34,7 @@ export default function PrivacyPage() {
             <p>We recognise that information relating to private collections may be particularly sensitive. Details of ownership, valuations, provenance, insurance, custody and location can reveal significant information about individuals and their personal affairs.</p>
             <p>We approach the handling of this information with discretion, care and respect for confidentiality.</p>
             <p>This Privacy Policy explains how Vaultier collects, uses, stores, shares and protects personal information in connection with our website, private enquiries, prospective memberships and collection-management services.</p>
-            <p>For the purposes of this policy, &quot;Vaultier&quot;, &quot;we&quot;, &quot;us&quot; and &quot;our&quot; refer to <strong>[Full registered legal entity name]</strong>, trading as Vaultier.</p>
+            <p>For the purposes of this policy, &quot;Vaultier&quot;, &quot;we&quot;, &quot;us&quot; and &quot;our&quot; refer to <strong>VAULTIER FZ-LLC</strong>, trading as Vaultier.</p>
             <p>Our website is <a href="https://vaultier.co">https://vaultier.co</a>.</p>
             <p>This policy applies to collectors, prospective members, authorised representatives, trustees, personal assistants, family office personnel, professional advisers and other individuals whose personal information we process.</p>
           </section>
@@ -202,7 +201,7 @@ export default function PrivacyPage() {
             <p><strong>Right to object:</strong> You may object to processing based on legitimate interests in circumstances provided by applicable law. You have the right to object at any time to the processing of your personal information for direct marketing.</p>
             <p>These rights are not absolute and may be subject to legal exceptions.</p>
             <p>For example, a request to erase information may not require Vaultier to delete records that must lawfully be retained or information that is necessary for establishing, exercising or defending legal claims.</p>
-            <p>To exercise a privacy right, please contact <strong>[Privacy contact email]</strong>.</p>
+            <p>To exercise a privacy right, please contact <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a>.</p>
             <p>We may request reasonable information to verify your identity before responding.</p>
             <p>Individuals may also lodge a complaint with the relevant data protection supervisory authority. For matters subject to UK data protection law, the relevant authority is the Information Commissioner&apos;s Office (ICO), accessible at <a href="https://ico.org.uk">https://ico.org.uk</a>.</p>
           </section>
@@ -257,9 +256,9 @@ export default function PrivacyPage() {
             <p>For privacy-related enquiries, requests or concerns, please contact:</p>
             <address>
               <strong>VAULTIER</strong><br />
-              Legal entity: [Full registered legal entity name]<br />
-              Registered address: [Registered business address]<br />
-              Privacy enquiries: [Privacy contact email]<br />
+              Legal entity: VAULTIER FZ-LLC<br />
+              Registered address: VUNE2853, Compass Building - Al Hulaila, Al Hulaila Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates<br />
+              General enquiries: <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a><br />
               Website: <a href="https://vaultier.co">https://vaultier.co</a>
             </address>
             <p>Where required, details of Vaultier&apos;s appointed data protection officer or UK representative will also be made available.</p>
