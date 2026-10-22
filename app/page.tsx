@@ -19,6 +19,17 @@ const mobileLetterLayout = [
   { id: "R", pathIndex: 1, transform: "translate(-315.5 417)" },
 ];
 
+const aboutScrollProgress = 0.35;
+
+function scrollToAboutChapter(experience: HTMLElement) {
+  const scrollDistance = Math.max(0, experience.offsetHeight - window.innerHeight);
+
+  window.scrollTo({
+    top: experience.offsetTop + scrollDistance * aboutScrollProgress,
+    behavior: "instant",
+  });
+}
+
 function VltrDesktopPaths({ prefix }: { prefix: string }) {
   return (
     <>
@@ -94,11 +105,7 @@ export default function Home() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       textileCopyOne.current?.scrollIntoView({ block: "start" });
     } else if (experience.current) {
-      const scrollDistance = Math.max(0, experience.current.scrollHeight - window.innerHeight);
-      window.scrollTo({
-        top: experience.current.offsetTop + scrollDistance * 0.3,
-        behavior: "auto",
-      });
+      scrollToAboutChapter(experience.current);
     }
   };
 
@@ -145,11 +152,7 @@ export default function Home() {
       hashFrame = window.requestAnimationFrame(() => {
         ScrollTrigger.refresh();
         if (experience.current) {
-          const scrollDistance = Math.max(0, experience.current.scrollHeight - window.innerHeight);
-          window.scrollTo({
-            top: experience.current.offsetTop + scrollDistance * 0.3,
-            behavior: "auto",
-          });
+          scrollToAboutChapter(experience.current);
         }
       });
     }
