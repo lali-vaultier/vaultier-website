@@ -541,14 +541,14 @@ a { color: inherit; }
   position: relative;
   width: 100%;
   min-height: 46px;
-  border: 1px solid rgba(66, 51, 31, .12);
+  border: 0;
   border-radius: 0;
-  padding: 11px 42px 11px 13px;
-  background: var(--off-white);
+  padding: 10px 42px 11px 2px;
+  background: transparent;
   color: var(--charcoal);
   box-shadow:
-    inset .55px .65px .65px rgba(66, 51, 31, .08),
-    inset -.55px -.65px .65px rgba(255, 255, 255, .7);
+    inset 0 -1px .55px color-mix(in srgb, var(--murky-grey) 72%, transparent),
+    0 .55px .35px rgba(255, 252, 246, .5);
   outline: none;
   font-size: 14px;
   font-weight: 300;
