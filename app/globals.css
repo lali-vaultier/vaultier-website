@@ -253,8 +253,6 @@ a { color: inherit; }
   position: absolute;
   z-index: 6;
   inset: 0;
-  background-color: transparent;
-  background-image: none;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
@@ -264,24 +262,22 @@ a { color: inherit; }
 .invitation-copy {
   z-index: 1;
   width: min(860px, 80vw);
-  color: var(--butter-cream);
+  color: var(--deep-teal-blue);
 }
 .invitation-copy .eyebrow,
 .invitation-copy h2,
 .invitation-copy .body-copy { filter: url(#letterpress-display); text-rendering: geometricPrecision; }
-.invitation-copy .eyebrow { color: var(--butter-cream); }
-.invitation-copy h2 { color: var(--butter-cream); font-size: clamp(48px, 5vw, 76px); line-height: .98; }
+.invitation-copy .eyebrow { color: color-mix(in srgb, var(--deep-teal-blue) 74%, var(--murky-grey)); }
+.invitation-copy h2 { color: var(--deep-teal-blue); font-size: clamp(48px, 5vw, 76px); line-height: .98; }
 .invitation-copy .body-copy {
   width: min(540px, 72vw);
   margin-top: 32px;
-  color: var(--butter-cream);
+  color: color-mix(in srgb, var(--deep-teal-blue) 78%, var(--murky-grey));
   font-size: clamp(13px, 1.02vw, 15px);
   line-height: 1.7;
 }
 .invitation-copy .final-body-copy { width: min(720px, 78vw); }
 .invitation-link { justify-self: center; margin-top: 42px; padding: 15px 30px; }
-.final-paper .invitation-link,
-.final-paper-nav { color: var(--butter-cream); }
 
 /* Shared secondary navigation */
 .secondary-header {
@@ -712,7 +708,7 @@ a { color: inherit; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .experience { height: auto; }
   .invitation-stage { position: relative; height: auto; overflow: visible; }
-  .textile { position: absolute; inset: 100svh 0 auto; height: 300svh; }
+  .textile { position: absolute; inset: 100svh 0 auto; height: 200svh; }
   .opening-paper,
   .textile-chapter,
   .final-paper { position: relative; min-height: 100svh; transform: none !important; }
