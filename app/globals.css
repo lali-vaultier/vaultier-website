@@ -41,6 +41,15 @@ a { color: inherit; }
   background-size: auto, 1120px auto;
 }
 
+.opening-paper,
+.final-paper,
+.form-frame {
+  background-color: var(--off-white);
+  background-image:
+    linear-gradient(rgba(246, 244, 242, .4), rgba(246, 244, 242, .4)),
+    url("/images/vaultier-buttercream-fine-cardstock.jpg");
+}
+
 .letterpress-definitions {
   position: absolute;
   width: 0;
@@ -109,7 +118,7 @@ a { color: inherit; }
 .blind-deboss-mark-highlight { fill: rgba(255, 252, 246, .62); }
 .blind-deboss-mark-shadow { fill: rgba(66, 51, 31, .22); }
 .blind-deboss-mark-face {
-  fill: color-mix(in srgb, var(--butter-cream) 88%, var(--murky-grey));
+  fill: color-mix(in srgb, var(--off-white) 88%, var(--murky-grey));
   opacity: .72;
 }
 .invitation-link,
