@@ -206,7 +206,6 @@ export default function Home() {
           </div>
           <nav className="opening-paper-nav" aria-label="Opening navigation">
             <a href="#about" onClick={handleAboutClick} tabIndex={openingInteractive ? 0 : -1}>About</a>
-            <span aria-hidden="true">|</span>
             <Link href="/private-enquiry" tabIndex={openingInteractive ? 0 : -1}>Private Enquiry</Link>
           </nav>
         </div>
