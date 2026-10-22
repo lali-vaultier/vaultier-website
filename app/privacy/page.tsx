@@ -1,3 +1,4 @@
+sed: --: No such file or directory
 import type { Metadata } from "next";
 import SecondaryHeader from "../components/SecondaryHeader";
 import SiteFooter from "../components/SiteFooter";
@@ -96,10 +97,10 @@ export default function PrivacyPage() {
           <section className="legal-policy-section" aria-labelledby="legal-bases">
             <h2 id="legal-bases"><span>4.</span> Legal Bases for Processing</h2>
             <p>Where the UK General Data Protection Regulation applies, we process personal information on one or more of the following lawful bases:</p>
-            <p><strong>Contractual necessity:</strong> Where processing is necessary to take steps requested before entering into an agreement or to perform a contract with an individual.</p>
-            <p><strong>Legitimate interests:</strong> Where processing is necessary for legitimate business purposes, including responding to professional enquiries, administering authorised collection relationships, maintaining service security and coordinating services, provided those interests are not overridden by the rights and freedoms of affected individuals.</p>
-            <p><strong>Legal obligation:</strong> Where processing is required to comply with applicable legal or regulatory requirements.</p>
-            <p><strong>Consent:</strong> Where we request and obtain consent for a specific processing activity, including where consent is required for optional communications or technologies.</p>
+            <p><strong className="legal-label">Contractual necessity:</strong> Where processing is necessary to take steps requested before entering into an agreement or to perform a contract with an individual.</p>
+            <p><strong className="legal-label">Legitimate interests:</strong> Where processing is necessary for legitimate business purposes, including responding to professional enquiries, administering authorised collection relationships, maintaining service security and coordinating services, provided those interests are not overridden by the rights and freedoms of affected individuals.</p>
+            <p><strong className="legal-label">Legal obligation:</strong> Where processing is required to comply with applicable legal or regulatory requirements.</p>
+            <p><strong className="legal-label">Consent:</strong> Where we request and obtain consent for a specific processing activity, including where consent is required for optional communications or technologies.</p>
             <p>The applicable lawful basis depends on the purpose and circumstances of the processing.</p>
             <p>Where consent is the lawful basis, it may be withdrawn at any time. Withdrawal does not affect processing already carried out lawfully.</p>
             <p>We will assess and document the appropriate lawful basis for each processing activity.</p>
@@ -110,11 +111,11 @@ export default function PrivacyPage() {
             <p>Collection information is central to the relationship between Vaultier and its members.</p>
             <p>We recognise that collection records may contain commercially, financially or personally sensitive information, including details that could create privacy or security risks if disclosed without authorisation.</p>
             <p>Our approach is guided by the following principles:</p>
-            <p><strong>Discretion:</strong> Information should be handled only for legitimate and authorised purposes.</p>
-            <p><strong>Proportionality:</strong> Access and disclosure should be limited to what is reasonably necessary.</p>
-            <p><strong>Controlled representation:</strong> A collector&apos;s appointment of an adviser or representative does not automatically authorise unrestricted access to every aspect of the collection.</p>
-            <p><strong>Purpose limitation:</strong> Information provided for collection management should not be repurposed for unrelated activities without an appropriate lawful basis and, where required, authorisation.</p>
-            <p><strong>Continuity:</strong> Collection records should be managed with appropriate consideration for changes in representatives, ownership and long-term stewardship.</p>
+            <p><strong className="legal-label">Discretion:</strong> Information should be handled only for legitimate and authorised purposes.</p>
+            <p><strong className="legal-label">Proportionality:</strong> Access and disclosure should be limited to what is reasonably necessary.</p>
+            <p><strong className="legal-label">Controlled representation:</strong> A collector&apos;s appointment of an adviser or representative does not automatically authorise unrestricted access to every aspect of the collection.</p>
+            <p><strong className="legal-label">Purpose limitation:</strong> Information provided for collection management should not be repurposed for unrelated activities without an appropriate lawful basis and, where required, authorisation.</p>
+            <p><strong className="legal-label">Continuity:</strong> Collection records should be managed with appropriate consideration for changes in representatives, ownership and long-term stewardship.</p>
             <p>Specific confidentiality commitments, access arrangements and responsibilities may be further defined in membership or service agreements.</p>
           </section>
 
@@ -198,7 +199,7 @@ export default function PrivacyPage() {
               <li>Withdraw consent where processing relies on consent.</li>
               <li>Challenge certain decisions made solely through automated processing where applicable.</li>
             </ul>
-            <p><strong>Right to object:</strong> You may object to processing based on legitimate interests in circumstances provided by applicable law. You have the right to object at any time to the processing of your personal information for direct marketing.</p>
+            <p><strong className="legal-label">Right to object:</strong> You may object to processing based on legitimate interests in circumstances provided by applicable law. You have the right to object at any time to the processing of your personal information for direct marketing.</p>
             <p>These rights are not absolute and may be subject to legal exceptions.</p>
             <p>For example, a request to erase information may not require Vaultier to delete records that must lawfully be retained or information that is necessary for establishing, exercising or defending legal claims.</p>
             <p>To exercise a privacy right, please contact <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a>.</p>
@@ -256,10 +257,10 @@ export default function PrivacyPage() {
             <p>For privacy-related enquiries, requests or concerns, please contact:</p>
             <address>
               <strong>VAULTIER</strong><br />
-              Legal entity: VAULTIER FZ-LLC<br />
-              Registered address: VUNE2853, Compass Building - Al Hulaila, Al Hulaila Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates<br />
-              General enquiries: <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a><br />
-              Website: <a href="https://vaultier.co">https://vaultier.co</a>
+              <span className="legal-label">Legal entity:</span> VAULTIER FZ-LLC<br />
+              <span className="legal-label">Registered address:</span> VUNE2853, Compass Building - Al Hulaila, Al Hulaila Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates<br />
+              <span className="legal-label">General enquiries:</span> <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a><br />
+              <span className="legal-label">Website:</span> <a href="https://vaultier.co">https://vaultier.co</a>
             </address>
             <p>Where required, details of Vaultier&apos;s appointed data protection officer or UK representative will also be made available.</p>
           </section>
