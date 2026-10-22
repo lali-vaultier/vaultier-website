@@ -123,6 +123,9 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 INVITATION_FORM_WEBHOOK_URL=
 INVITATION_FORM_API_KEY=
+RESEND_API_KEY=
+INVITATION_FORM_RECIPIENT_EMAIL=applications@accessvaultier.co
+INVITATION_FORM_FROM_EMAIL=applications@accessvaultier.co
 ```
 
 ### Variable Reference
@@ -132,6 +135,9 @@ INVITATION_FORM_API_KEY=
 | `NEXT_PUBLIC_SITE_URL` | Recommended | Public URL of the website |
 | `INVITATION_FORM_WEBHOOK_URL` | For live submissions | Secure server endpoint that receives applications |
 | `INVITATION_FORM_API_KEY` | Optional | Bearer token sent to the configured webhook |
+| `RESEND_API_KEY` | Recommended for live submissions | Server-only Resend credential provisioned through Vercel |
+| `INVITATION_FORM_RECIPIENT_EMAIL` | Optional | Destination mailbox; defaults to `applications@accessvaultier.co` |
+| `INVITATION_FORM_FROM_EMAIL` | Optional | Verified sender address; defaults to `applications@accessvaultier.co` |
 
 Only variables prefixed with `NEXT_PUBLIC_` are exposed to the browser.
 
@@ -153,7 +159,9 @@ The server validates:
 - Collection value range
 - Country of residence
 
-When `INVITATION_FORM_WEBHOOK_URL` is configured, the application is securely forwarded from the server to that endpoint.
+When `RESEND_API_KEY` is configured, the server emails each validated application to `applications@accessvaultier.co` (or the address set in `INVITATION_FORM_RECIPIENT_EMAIL`). The applicant's email address is used as the reply-to address. Exact duplicate payloads use a deterministic idempotency key to prevent duplicate delivery during retries.
+
+If Resend is not configured and `INVITATION_FORM_WEBHOOK_URL` is present, the application is securely forwarded from the server to that endpoint.
 
 If `INVITATION_FORM_API_KEY` is present, it is sent as a bearer token:
 
@@ -165,7 +173,7 @@ The success message is only displayed after the server confirms that the receivi
 
 ### Preview Mode
 
-If `INVITATION_FORM_WEBHOOK_URL` is not configured, the form operates in preview mode.
+If neither Resend nor `INVITATION_FORM_WEBHOOK_URL` is configured, the form operates in preview mode.
 
 In preview mode:
 
@@ -338,6 +346,9 @@ In **Project Settings → Environment Variables**, add:
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 INVITATION_FORM_WEBHOOK_URL=https://your-secure-endpoint.com
 INVITATION_FORM_API_KEY=your-secret-key
+RESEND_API_KEY=provisioned-by-vercel-marketplace
+INVITATION_FORM_RECIPIENT_EMAIL=applications@accessvaultier.co
+INVITATION_FORM_FROM_EMAIL=applications@accessvaultier.co
 ```
 
 Add private variables to the Production environment and any Preview environments that require live submission testing.
