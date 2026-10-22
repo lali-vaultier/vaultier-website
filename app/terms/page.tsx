@@ -14,7 +14,7 @@ export default function TermsPage() {
       <SecondaryHeader />
       <article className="legal-document">
         <header className="legal-introduction">
-          <p className="eyebrow">Vaultier</p>
+          <p className="eyebrow">Approved Legal Content Forthcoming</p>
           <h1>Terms of Use</h1>
           <dl className="legal-dates">
             <div>
@@ -210,7 +210,7 @@ export default function TermsPage() {
           <p className="legal-end">End of Terms of Use</p>
         </div>
       </article>
-      <SiteFooter />
+      <SiteFooter current="terms" />
     </main>
   );
 }
