@@ -1,3 +1,4 @@
+sed: --: No such file or directory
 import type { Metadata } from "next";
 import Link from "next/link";
 import SecondaryHeader from "../components/SecondaryHeader";
@@ -199,10 +200,10 @@ export default function TermsPage() {
             <p>For enquiries relating to these Terms of Use, please contact:</p>
             <address>
               <strong>VAULTIER</strong><br />
-              Legal entity: VAULTIER FZ-LLC<br />
-              Registered address: VUNE2853, Compass Building - Al Hulaila, Al Hulaila Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates<br />
-              General enquiries: <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a><br />
-              Website: <a href="https://vaultier.co">https://vaultier.co</a>
+              <span className="legal-label">Legal entity:</span> VAULTIER FZ-LLC<br />
+              <span className="legal-label">Registered address:</span> VUNE2853, Compass Building - Al Hulaila, Al Hulaila Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates<br />
+              <span className="legal-label">General enquiries:</span> <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a><br />
+              <span className="legal-label">Website:</span> <a href="https://vaultier.co">https://vaultier.co</a>
             </address>
           </section>
 
