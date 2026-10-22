@@ -249,11 +249,17 @@ a { color: inherit; }
   margin-inline: auto;
   font-size: clamp(52px, 5.5vw, 86px);
 }
+.textile-chapter .collection-manager-heading {
+  max-width: none;
+  font-size: clamp(42px, 4.35vw, 68px);
+  white-space: nowrap;
+}
 .textile-chapter .body-copy,
 .invitation-copy .body-copy {
   font-family: var(--font-body);
 }
 .textile-chapter .body-copy { width: min(720px, 78vw); }
+.textile-chapter .body-copy-followup { margin-top: 18px; }
 .final-paper {
   position: absolute;
   z-index: 6;
@@ -281,6 +287,7 @@ a { color: inherit; }
   font-size: clamp(13px, 1.02vw, 15px);
   line-height: 1.7;
 }
+.invitation-copy .final-body-copy { width: min(720px, 78vw); }
 .invitation-link { justify-self: center; margin-top: 42px; padding: 15px 30px; }
 
 /* Shared secondary navigation */
@@ -612,7 +619,13 @@ a { color: inherit; }
   .textile-chapter { width: 88vw; }
   .textile-chapter h1,
   .textile-chapter h2 { font-size: clamp(42px, 11.2vw, 58px); line-height: .94; }
+  .textile-chapter .collection-manager-heading {
+    max-width: 88vw;
+    font-size: clamp(38px, 10.4vw, 54px);
+    white-space: normal;
+  }
   .textile-chapter .body-copy { width: 84vw; font-size: 13px; line-height: 1.58; }
+  .textile-chapter .body-copy-followup { margin-top: 16px; }
   .body-copy { width: 82vw; margin-top: 24px; }
   .invitation-copy { width: 86vw; }
   .invitation-copy h2 { font-size: clamp(45px, 11.5vw, 60px); line-height: .96; }
