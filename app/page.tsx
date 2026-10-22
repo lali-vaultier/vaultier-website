@@ -140,7 +140,24 @@ export default function Home() {
         .fromTo(invitationCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.08 }, 0.9);
     }, experience);
 
-    return () => context.revert();
+    let hashFrame = 0;
+    if (window.location.hash === "#about") {
+      hashFrame = window.requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+        if (experience.current) {
+          const scrollDistance = Math.max(0, experience.current.scrollHeight - window.innerHeight);
+          window.scrollTo({
+            top: experience.current.offsetTop + scrollDistance * 0.3,
+            behavior: "auto",
+          });
+        }
+      });
+    }
+
+    return () => {
+      window.cancelAnimationFrame(hashFrame);
+      context.revert();
+    };
   }, []);
 
   return (
