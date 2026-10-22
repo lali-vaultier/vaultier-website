@@ -196,12 +196,16 @@ export default function Home() {
 
         <section id="about" ref={textileCopyOne} className="editorial-copy opening-copy textile-chapter" aria-labelledby="privacy-heading">
           <p className="eyebrow">Privacy is at the heart of what we do.</p>
-          <h1 id="privacy-heading">A private collection manager for valuable pieces</h1>
+          <h1 id="privacy-heading" className="collection-manager-heading">
+            A private collection manager for valuable pieces
+          </h1>
           <p className="body-copy">
             A valuable collection accumulates faster than the paperwork around it. Pieces move, values change, and
-            the details end up spread across people and places. Vaultier gives every piece a permanent, dynamic
-            record and coordinates the valuers, insurers, restorers and specialists who work on it, so the collection
-            is looked after without the collector having to.
+            the details end up spread across people and places.
+          </p>
+          <p className="body-copy body-copy-followup">
+            Vaultier gives every piece a permanent, dynamic record and coordinates the valuers, insurers, restorers
+            and specialists who work on it, so the collection is looked after without the collector having to.
           </p>
         </section>
 
@@ -218,7 +222,7 @@ export default function Home() {
           <div ref={invitationCopy} className="editorial-copy invitation-copy">
             <p className="eyebrow">How we work</p>
             <h2>Vaultier&apos;s technology monitors and manages the collection</h2>
-            <p className="body-copy">
+            <p className="body-copy final-body-copy">
               The team provides the judgement and discretion that technology cannot. Membership is by application.
               Vaultier accepts a limited number of collections so each is looked after properly.
             </p>
