@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import InvitationForm from "../request-invitation/InvitationForm";
 
@@ -12,20 +11,11 @@ export default function PrivateEnquiryPage() {
   return (
     <main className="form-page">
       <header className="form-topbar">
-        <Link href="/" className="form-logomark-link" aria-label="Vaultier home">
-          <Image
-            className="form-logomark"
-            src="/brand/vaultier-logomark.svg"
-            alt=""
-            width={500}
-            height={500}
-            priority
-            unoptimized
-          />
-        </Link>
         <nav className="form-route-nav" aria-label="Website navigation">
           <Link href="/">Home</Link>
+          <span aria-hidden="true">|</span>
           <Link href="/privacy">Privacy</Link>
+          <span aria-hidden="true">|</span>
           <Link href="/terms">Terms</Link>
         </nav>
       </header>
