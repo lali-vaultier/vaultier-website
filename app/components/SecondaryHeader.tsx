@@ -1,14 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
+import VltrEngravedMark from "./VltrEngravedMark";
 
 export default function SecondaryHeader() {
   return (
     <header className="secondary-header">
       <Link href="/" className="secondary-header-mark" aria-label="Vaultier home">
-        <Image src="/brand/vaultier-logomark.svg" alt="" width={44} height={44} priority />
+        <VltrEngravedMark />
       </Link>
       <nav className="secondary-navigation" aria-label="Primary navigation">
-        <Link href="/private-enquiry">Private Enquiry</Link>
+        <Link href="/#about">About</Link>
       </nav>
     </header>
   );
