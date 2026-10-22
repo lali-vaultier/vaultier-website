@@ -1,3 +1,4 @@
+sed: --: No such file or directory
 @import "tailwindcss";
 
 :root {
@@ -397,10 +398,16 @@ a { color: inherit; }
 .legal-policy-section ul {
   margin: 0 0 24px;
   padding-left: 20px;
+  list-style: disc outside;
 }
 .legal-policy-section li { padding-left: 7px; }
 .legal-policy-section li + li { margin-top: 9px; }
 .legal-policy-section strong { color: var(--deep-teal-blue); font-weight: 500; }
+.legal-label {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
 .legal-policy-section a {
   color: var(--deep-teal-blue);
   text-decoration-color: color-mix(in srgb, var(--olive-green) 62%, transparent);
