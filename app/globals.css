@@ -1,4 +1,3 @@
-sed: --: No such file or directory
 @import "tailwindcss";
 
 :root {
@@ -95,15 +94,16 @@ a { color: inherit; }
   z-index: 1;
   display: grid;
   justify-items: center;
-  width: min(680px, 84vw);
+  width: min(918px, 88vw);
 }
 .blind-deboss-mark {
   display: block;
-  width: min(918px, 88vw);
+  width: 100%;
   height: auto;
   overflow: visible;
   text-rendering: geometricPrecision;
 }
+.blind-deboss-mark-desktop { transform: translateX(-.85%); }
 .blind-deboss-mark-mobile { display: none; }
 .blind-deboss-mark-highlight { fill: rgba(255, 252, 246, .62); }
 .blind-deboss-mark-shadow { fill: rgba(66, 51, 31, .22); }
@@ -180,11 +180,14 @@ a { color: inherit; }
   text-transform: uppercase;
 }
 .opening-paper-nav {
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  white-space: nowrap;
   color: var(--deep-teal-blue);
 }
 .opening-paper-nav a,
 .final-paper-nav a { text-decoration: none; }
-.opening-paper-nav span { opacity: .52; }
 
 .editorial-copy {
   position: absolute;
