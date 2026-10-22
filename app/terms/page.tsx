@@ -14,16 +14,15 @@ export default function TermsPage() {
       <SecondaryHeader />
       <article className="legal-document">
         <header className="legal-introduction">
-          <p className="eyebrow">Approved Legal Content Forthcoming</p>
           <h1>Terms of Use</h1>
           <dl className="legal-dates">
             <div>
               <dt>Effective date</dt>
-              <dd>[Date of publication]</dd>
+              <dd>22 Oct 2026</dd>
             </div>
             <div>
               <dt>Last updated</dt>
-              <dd>[Date]</dd>
+              <dd>22 Oct 2026</dd>
             </div>
           </dl>
         </header>
@@ -33,7 +32,7 @@ export default function TermsPage() {
             <h2 id="terms-introduction"><span>1.</span> Introduction</h2>
             <p>Welcome to Vaultier.</p>
             <p>These Terms of Use govern your access to and use of the website located at <a href="https://vaultier.co">https://vaultier.co</a> (the &quot;Website&quot;), including its content, features and private enquiry facilities.</p>
-            <p>The Website is operated by <strong>[Full registered legal entity name]</strong>, trading as Vaultier (&quot;Vaultier&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;).</p>
+            <p>The Website is operated by <strong>VAULTIER FZ-LLC</strong>, trading as Vaultier (&quot;Vaultier&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;).</p>
             <p>By accessing or using the Website, you agree to these Terms of Use. If you do not agree, please discontinue your use of the Website.</p>
             <p>These Terms apply to visitors, prospective members, collectors, authorised representatives, professional advisers and other individuals accessing the Website.</p>
             <p>Separate agreements may govern any collection-management, advisory, coordination or membership services subsequently provided by Vaultier.</p>
@@ -200,9 +199,9 @@ export default function TermsPage() {
             <p>For enquiries relating to these Terms of Use, please contact:</p>
             <address>
               <strong>VAULTIER</strong><br />
-              Legal entity: [Full registered legal entity name]<br />
-              Registered address: [Registered business address]<br />
-              General enquiries: [Contact email address]<br />
+              Legal entity: VAULTIER FZ-LLC<br />
+              Registered address: VUNE2853, Compass Building - Al Hulaila, Al Hulaila Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates<br />
+              General enquiries: <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a><br />
               Website: <a href="https://vaultier.co">https://vaultier.co</a>
             </address>
           </section>
