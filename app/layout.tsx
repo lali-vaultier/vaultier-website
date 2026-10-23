@@ -13,6 +13,16 @@ const editorsNote = localFont({
   fallback: ["Georgia", "serif"],
 });
 
+const editorsNoteHairline = localFont({
+  src: "./fonts/editors-note-hairline.otf",
+  variable: "--font-editorial-hairline",
+  display: "swap",
+  style: "normal",
+  weight: "100",
+  preload: true,
+  fallback: ["Georgia", "serif"],
+});
+
 const openSauce = localFont({
   src: "./fonts/open-sauce-two-light.ttf",
   variable: "--font-open-sauce",
@@ -39,7 +49,11 @@ export function generateMetadata(): Metadata {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={`${editorsNote.variable} ${openSauce.variable}`} data-scroll-behavior="smooth">
+    <html
+      lang="en-GB"
+      className={`${editorsNote.variable} ${editorsNoteHairline.variable} ${openSauce.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <body>
         {children}
         <SpeedInsights />

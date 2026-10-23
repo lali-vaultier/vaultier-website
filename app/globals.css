@@ -217,6 +217,10 @@ a { color: inherit; }
 }
 .editorial-copy h1,
 .editorial-copy h2 { font-size: clamp(54px, 6vw, 92px); line-height: .94; }
+.editorial-copy .homepage-editorial-heading {
+  font-family: var(--font-editorial-hairline), Georgia, serif;
+  font-style: normal;
+}
 .body-copy {
   width: min(570px, 78vw);
   margin: 28px auto 0;
@@ -225,25 +229,33 @@ a { color: inherit; }
   line-height: 1.65;
 }
 .textile-chapter {
-  width: min(1080px, 86vw);
+  width: min(860px, 80vw);
+  grid-template-columns: minmax(0, 1fr);
   visibility: hidden;
 }
 .textile-chapter h1,
 .textile-chapter h2 {
-  max-width: 1050px;
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
-  font-size: clamp(52px, 5.5vw, 86px);
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: .98;
 }
 .textile-chapter .collection-manager-heading {
   max-width: none;
-  font-size: clamp(42px, 4.35vw, 68px);
-  white-space: nowrap;
+  white-space: normal;
 }
+.editorial-heading-break--mobile { display: none; }
 .textile-chapter .body-copy,
 .invitation-copy .body-copy {
   font-family: var(--font-body);
 }
-.textile-chapter .body-copy { width: min(720px, 78vw); }
+.textile-chapter .body-copy {
+  width: min(720px, 78vw);
+  margin-top: 32px;
+  font-size: clamp(13px, 1.02vw, 15px);
+  line-height: 1.7;
+}
 .textile-chapter .body-copy-followup { margin-top: 18px; }
 .final-paper {
   position: absolute;
@@ -258,13 +270,14 @@ a { color: inherit; }
 .invitation-copy {
   z-index: 1;
   width: min(860px, 80vw);
+  grid-template-columns: minmax(0, 1fr);
   color: var(--deep-teal-blue);
 }
 .invitation-copy .eyebrow,
 .invitation-copy h2,
 .invitation-copy .body-copy { filter: url(#letterpress-display); text-rendering: geometricPrecision; }
 .invitation-copy .eyebrow { color: color-mix(in srgb, var(--deep-teal-blue) 74%, var(--murky-grey)); }
-.invitation-copy h2 { color: var(--deep-teal-blue); font-size: clamp(48px, 5vw, 76px); line-height: .98; }
+.invitation-copy h2 { width: 100%; color: var(--deep-teal-blue); font-size: clamp(48px, 5vw, 72px); line-height: .98; }
 .invitation-copy .body-copy {
   width: min(540px, 72vw);
   margin-top: 32px;
@@ -635,17 +648,18 @@ a { color: inherit; }
   .editorial-copy h2 { font-size: clamp(46px, 13vw, 66px); line-height: .92; }
   .textile-chapter { width: 88vw; }
   .textile-chapter h1,
-  .textile-chapter h2 { font-size: clamp(42px, 11.2vw, 58px); line-height: .94; }
+  .textile-chapter h2 { font-size: clamp(40px, 11vw, 58px); line-height: .96; }
+  .editorial-heading-break--desktop { display: none; }
+  .editorial-heading-break--mobile { display: initial; }
   .textile-chapter .collection-manager-heading {
-    max-width: 88vw;
-    font-size: clamp(38px, 10.4vw, 54px);
+    max-width: none;
     white-space: normal;
   }
-  .textile-chapter .body-copy { width: 84vw; font-size: 13px; line-height: 1.58; }
+  .textile-chapter .body-copy { width: 80vw; margin-top: 28px; font-size: 13px; line-height: 1.7; }
   .textile-chapter .body-copy-followup { margin-top: 16px; }
   .body-copy { width: 82vw; margin-top: 24px; }
-  .invitation-copy { width: 86vw; }
-  .invitation-copy h2 { font-size: clamp(45px, 11.5vw, 60px); line-height: .96; }
+  .invitation-copy { width: 88vw; }
+  .invitation-copy h2 { font-size: clamp(40px, 11vw, 58px); line-height: .96; }
   .invitation-copy .body-copy { width: 80vw; margin-top: 28px; }
   .invitation-link { margin-top: 34px; padding: 14px 22px; }
   .opening-paper-nav,

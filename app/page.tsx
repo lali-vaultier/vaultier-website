@@ -215,8 +215,14 @@ export default function Home() {
 
         <section id="about" ref={textileCopyOne} className="editorial-copy opening-copy textile-chapter" aria-labelledby="privacy-heading">
           <p className="eyebrow">Privacy is at the heart of what we do.</p>
-          <h1 id="privacy-heading" className="collection-manager-heading">
-            A private collection manager for valuable pieces
+          <h1 id="privacy-heading" className="collection-manager-heading homepage-editorial-heading">
+            A private collection
+            <br className="editorial-heading-break editorial-heading-break--mobile" />
+            {" "}manager
+            <br className="editorial-heading-break editorial-heading-break--desktop" />
+            {" "}for
+            <br className="editorial-heading-break editorial-heading-break--mobile" />
+            {" "}valuable pieces
           </h1>
           <p className="body-copy">
             A valuable collection accumulates faster than the paperwork around it. Pieces move, values change, and
@@ -230,7 +236,15 @@ export default function Home() {
 
         <section ref={textileCopyTwo} className="editorial-copy opening-copy textile-chapter" aria-labelledby="people-heading">
           <p className="eyebrow">For the people who look after it</p>
-          <h2 id="people-heading">Much of a collection is managed by someone trusted to hold it together</h2>
+          <h2 id="people-heading" className="homepage-editorial-heading">
+            Much of a collection
+            <br className="editorial-heading-break editorial-heading-break--mobile" />
+            {" "}is managed by
+            <br className="editorial-heading-break editorial-heading-break--desktop" />
+            {" "}someone
+            <br className="editorial-heading-break editorial-heading-break--mobile" />
+            {" "}trusted to hold it together
+          </h2>
           <p className="body-copy">
             Vaultier is built for them too: trustees, personal assistants and family offices who keep a collection in
             order on the collector&apos;s behalf, with the access they need and nothing they don&apos;t.
@@ -240,7 +254,13 @@ export default function Home() {
         <div ref={finalPaper} className={`final-paper${invitationVisible ? " is-active" : ""}`} aria-hidden={!invitationVisible}>
           <div ref={invitationCopy} className="editorial-copy invitation-copy">
             <p className="eyebrow">How we work</p>
-            <h2>Vaultier&apos;s technology monitors and manages the collection</h2>
+            <h2 className="homepage-editorial-heading">
+              Vaultier&apos;s technology
+              <br className="editorial-heading-break editorial-heading-break--mobile" />
+              {" "}monitors and
+              <br className="editorial-heading-break" />
+              {" "}manages the collection
+            </h2>
             <p className="body-copy final-body-copy">
               The team provides the judgement and discretion that technology cannot. Membership is by application.
               Vaultier accepts a limited number of collections so each is looked after properly.
