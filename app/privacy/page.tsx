@@ -1,4 +1,3 @@
-sed: --: No such file or directory
 import type { Metadata } from "next";
 import SecondaryHeader from "../components/SecondaryHeader";
 import SiteFooter from "../components/SiteFooter";
