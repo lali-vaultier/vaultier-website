@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const editorsNote = localFont({
@@ -39,7 +40,10 @@ export function generateMetadata(): Metadata {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-GB" className={`${editorsNote.variable} ${openSauce.variable}`} data-scroll-behavior="smooth">
-      <body>{children}</body>
+      <body>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
