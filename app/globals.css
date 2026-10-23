@@ -105,6 +105,10 @@ a { color: inherit; }
   fill: color-mix(in srgb, var(--off-white) 88%, var(--murky-grey));
   opacity: .72;
 }
+.opening-vltr-metal-face {
+  opacity: .98;
+  shape-rendering: geometricPrecision;
+}
 .invitation-link,
 .submit-button {
   position: relative;

@@ -50,6 +50,38 @@ function VltrMobilePaths({ prefix }: { prefix: string }) {
   );
 }
 
+function MetallicInlayDefinitions({
+  id,
+  width,
+  height,
+}: {
+  id: string;
+  width: number;
+  height: number;
+}) {
+  return (
+    <defs>
+      <linearGradient
+        id={id}
+        gradientUnits="userSpaceOnUse"
+        x1="0"
+        y1={height}
+        x2={width}
+        y2="0"
+      >
+        <stop offset="0" stopColor="#716d65" />
+        <stop offset="0.18" stopColor="#969186" />
+        <stop offset="0.4" stopColor="#c3bdb2" />
+        <stop offset="0.47" stopColor="#e2ded6" />
+        <stop offset="0.515" stopColor="#f0ede7" />
+        <stop offset="0.565" stopColor="#aaa498" />
+        <stop offset="0.76" stopColor="#817d74" />
+        <stop offset="1" stopColor="#b7b1a6" />
+      </linearGradient>
+    </defs>
+  );
+}
+
 function LetterpressDefinitions() {
   return (
     <svg className="letterpress-definitions" aria-hidden="true" focusable="false">
@@ -178,13 +210,14 @@ export default function Home() {
               aria-label="Vaultier abbreviation"
               preserveAspectRatio="xMidYMid meet"
             >
+              <MetallicInlayDefinitions id="opening-vltr-metal-desktop" width={500} height={287.5} />
               <g className="blind-deboss-mark-highlight" transform="translate(0.65 0.72)">
                 <VltrDesktopPaths prefix="deboss-highlight" />
               </g>
               <g className="blind-deboss-mark-shadow" transform="translate(-0.68 -0.76)">
                 <VltrDesktopPaths prefix="deboss-shadow" />
               </g>
-              <g className="blind-deboss-mark-face">
+              <g className="opening-vltr-metal-face" fill="url(#opening-vltr-metal-desktop)">
                 <VltrDesktopPaths prefix="deboss-face" />
               </g>
             </svg>
@@ -195,13 +228,14 @@ export default function Home() {
               aria-label="Vaultier abbreviation"
               preserveAspectRatio="xMidYMid meet"
             >
+              <MetallicInlayDefinitions id="opening-vltr-metal-mobile" width={150} height={700} />
               <g className="blind-deboss-mark-highlight" transform="translate(0.65 0.72)">
                 <VltrMobilePaths prefix="deboss-mobile-highlight" />
               </g>
               <g className="blind-deboss-mark-shadow" transform="translate(-0.68 -0.76)">
                 <VltrMobilePaths prefix="deboss-mobile-shadow" />
               </g>
-              <g className="blind-deboss-mark-face">
+              <g className="opening-vltr-metal-face" fill="url(#opening-vltr-metal-mobile)">
                 <VltrMobilePaths prefix="deboss-mobile-face" />
               </g>
             </svg>
