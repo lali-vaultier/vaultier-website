@@ -69,14 +69,14 @@ function MetallicInlayDefinitions({
         x2={width}
         y2="0"
       >
-        <stop offset="0" stopColor="#30321e" />
-        <stop offset="0.18" stopColor="#50532b" />
-        <stop offset="0.4" stopColor="#6b6f3a" />
-        <stop offset="0.47" stopColor="#929574" />
-        <stop offset="0.515" stopColor="#c0c1a5" />
-        <stop offset="0.565" stopColor="#777b47" />
-        <stop offset="0.76" stopColor="#414420" />
-        <stop offset="1" stopColor="#636737" />
+        <stop offset="0" stopColor="#242829" />
+        <stop offset="0.18" stopColor="#383e40" />
+        <stop offset="0.4" stopColor="#555c5f" />
+        <stop offset="0.47" stopColor="#7b8386" />
+        <stop offset="0.515" stopColor="#a8aeb0" />
+        <stop offset="0.565" stopColor="#626a6d" />
+        <stop offset="0.76" stopColor="#2f3436" />
+        <stop offset="1" stopColor="#4c5355" />
       </linearGradient>
     </defs>
   );
