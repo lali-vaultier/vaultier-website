@@ -19,13 +19,68 @@ const mobileLetterLayout = [
   { id: "R", pathIndex: 1, transform: "translate(-315.5 417)" },
 ];
 
-const aboutScrollProgress = 0.35;
+const chapterScrollProgress = {
+  about: 0.13,
+  privateClient: 0.69,
+  security: 0.96,
+} as const;
 
-function scrollToAboutChapter(experience: HTMLElement) {
+const textileChapters = [
+  {
+    id: "about",
+    eyebrow: null,
+    heading: "Grow and preserve your collection through time with Vaultier",
+    paragraphs: [
+      "Vaultier assigns every valuable piece a permanent digital record, with technology that handles insurance, valuations, care and specialist work.",
+      "A White Glove team is dedicated entirely to the care and expansion of your collection.",
+    ],
+    compact: false,
+  },
+  {
+    id: "vaultier-record",
+    eyebrow: "The Vaultier Record: A tool for wealth preservation",
+    heading: "Preserve the identity, history and value of every piece",
+    paragraphs: [
+      "Each Vaultier Record details the piece’s ownership, provenance, documentation, valuation, condition and location.",
+      "The Record is updated as the piece is insured, moved, restored, sold, gifted or inherited.",
+    ],
+    compact: false,
+  },
+  {
+    id: "white-glove",
+    eyebrow: null,
+    heading: "White Glove: Your Collection in Experienced Hands",
+    paragraphs: [
+      "Vaultier arranges the work each piece requires, from insurance and valuation to restoration, maintenance, transport and storage.",
+      "A small team is dedicated to the care and maintenance of your collection.",
+    ],
+    compact: false,
+  },
+  {
+    id: "collection-guidance",
+    eyebrow: null,
+    heading: "Collection Guidance: Better-informed acquisitions and sales",
+    paragraphs: [
+      "Before a piece is acquired or sold, Vaultier arranges independent advice on provenance, authenticity, condition and value from approved and vetted specialists within our private Guild.",
+    ],
+    compact: true,
+  },
+  {
+    id: "private-client-access",
+    eyebrow: null,
+    heading: "Private Client Access: For collectors and their authorised representatives",
+    paragraphs: [
+      "Family offices, authorised representatives and personal assistants can manage the collection on the collector’s behalf, with the collector as involved as they choose to be.",
+    ],
+    compact: true,
+  },
+] as const;
+
+function scrollToExperienceProgress(experience: HTMLElement, progress: number) {
   const scrollDistance = Math.max(0, experience.offsetHeight - window.innerHeight);
 
   window.scrollTo({
-    top: experience.offsetTop + scrollDistance * aboutScrollProgress,
+    top: experience.offsetTop + scrollDistance * progress,
     behavior: "instant",
   });
 }
@@ -124,20 +179,26 @@ function LetterpressDefinitions() {
 export default function Home() {
   const experience = useRef<HTMLElement>(null);
   const openingPaper = useRef<HTMLDivElement>(null);
-  const textileCopyOne = useRef<HTMLDivElement>(null);
-  const textileCopyTwo = useRef<HTMLDivElement>(null);
+  const textileChapterRefs = useRef<Array<HTMLElement | null>>([]);
   const finalPaper = useRef<HTMLDivElement>(null);
-  const invitationCopy = useRef<HTMLDivElement>(null);
+  const privateEnquiryCopy = useRef<HTMLDivElement>(null);
+  const securityPaper = useRef<HTMLDivElement>(null);
+  const securityCopy = useRef<HTMLDivElement>(null);
+  const securityNav = useRef<HTMLElement>(null);
   const [openingInteractive, setOpeningInteractive] = useState(true);
-  const [invitationVisible, setInvitationVisible] = useState(false);
+  const [privateEnquiryVisible, setPrivateEnquiryVisible] = useState(false);
+  const [securityVisible, setSecurityVisible] = useState(false);
 
-  const handleAboutClick = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleChapterClick = (event: MouseEvent<HTMLAnchorElement>, progress: number) => {
     event.preventDefault();
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      textileCopyOne.current?.scrollIntoView({ block: "start" });
+      const target = event.currentTarget.getAttribute("href");
+      if (target?.startsWith("#")) {
+        document.querySelector(target)?.scrollIntoView({ block: "start" });
+      }
     } else if (experience.current) {
-      scrollToAboutChapter(experience.current);
+      scrollToExperienceProgress(experience.current, progress);
     }
   };
 
@@ -148,7 +209,8 @@ export default function Home() {
     if (reduceMotion) {
       const frame = window.requestAnimationFrame(() => {
         setOpeningInteractive(true);
-        setInvitationVisible(true);
+        setPrivateEnquiryVisible(true);
+        setSecurityVisible(true);
       });
       return () => window.cancelAnimationFrame(frame);
     }
@@ -163,28 +225,45 @@ export default function Home() {
           scrub: 0.65,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            setOpeningInteractive(self.progress < 0.25);
-            setInvitationVisible(self.progress > 0.87);
+            setOpeningInteractive(self.progress < 0.1);
+            setPrivateEnquiryVisible(self.progress >= 0.79 && self.progress < 0.92);
+            setSecurityVisible(self.progress >= 0.91);
           },
         },
       });
 
+      timeline.to(openingPaper.current, { yPercent: -104, duration: 0.12 }, 0);
+
+      textileChapterRefs.current.forEach((chapter, index) => {
+        if (!chapter) return;
+
+        const start = 0.11 + index * 0.135;
+        timeline
+          .fromTo(chapter, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.04 }, start)
+          .to(chapter, { autoAlpha: 0, y: -10, duration: 0.04 }, start + 0.095);
+      });
+
       timeline
-        .to(openingPaper.current, { yPercent: -104, duration: 0.26 }, 0)
-        .fromTo(textileCopyOne.current, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.08 }, 0.24)
-        .to(textileCopyOne.current, { autoAlpha: 0, y: -10, duration: 0.08 }, 0.5)
-        .fromTo(textileCopyTwo.current, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.08 }, 0.58)
-        .to(textileCopyTwo.current, { autoAlpha: 0, y: -10, duration: 0.08 }, 0.8)
-        .fromTo(finalPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0.87)
-        .fromTo(invitationCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.08 }, 0.9);
+        .fromTo(finalPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.78)
+        .fromTo(privateEnquiryCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.05 }, 0.8)
+        .to(privateEnquiryCopy.current, { opacity: 0, y: -10, duration: 0.04 }, 0.89)
+        .fromTo(securityPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.91)
+        .fromTo(securityCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.04 }, 0.93)
+        .fromTo(securityNav.current, { opacity: 0 }, { opacity: 1, duration: 0.03 }, 0.96);
     }, experience);
 
     let hashFrame = 0;
-    if (window.location.hash === "#about") {
+    const hashProgress = {
+      "#about": chapterScrollProgress.about,
+      "#private-client-access": chapterScrollProgress.privateClient,
+      "#security": chapterScrollProgress.security,
+    }[window.location.hash];
+
+    if (hashProgress !== undefined) {
       hashFrame = window.requestAnimationFrame(() => {
         ScrollTrigger.refresh();
         if (experience.current) {
-          scrollToAboutChapter(experience.current);
+          scrollToExperienceProgress(experience.current, hashProgress);
         }
       });
     }
@@ -239,73 +318,98 @@ export default function Home() {
                 <VltrMobilePaths prefix="deboss-mobile-face" />
               </g>
             </svg>
-
+            <p className="opening-paper-subheading">Private Collection Management</p>
           </div>
           <nav className="opening-paper-nav" aria-label="Opening navigation">
-            <a href="#about" onClick={handleAboutClick} tabIndex={openingInteractive ? 0 : -1}>About</a>
+            <a
+              href="#private-client-access"
+              onClick={(event) => handleChapterClick(event, chapterScrollProgress.privateClient)}
+              tabIndex={openingInteractive ? 0 : -1}
+            >
+              Private Client Access
+            </a>
+            <Link href="/private-enquiry" tabIndex={openingInteractive ? 0 : -1}>Professional Access</Link>
             <Link href="/private-enquiry" tabIndex={openingInteractive ? 0 : -1}>Private Enquiry</Link>
           </nav>
         </div>
 
-        <section id="about" ref={textileCopyOne} className="editorial-copy opening-copy textile-chapter" aria-labelledby="privacy-heading">
-          <p className="eyebrow">Privacy is at the heart of what we do.</p>
-          <h1 id="privacy-heading" className="collection-manager-heading homepage-editorial-heading">
-            A private collection
-            <br className="editorial-heading-break editorial-heading-break--mobile" />
-            {" "}manager
-            <br className="editorial-heading-break editorial-heading-break--desktop" />
-            {" "}for
-            <br className="editorial-heading-break editorial-heading-break--mobile" />
-            {" "}valuable pieces
-          </h1>
-          <p className="body-copy">
-            A valuable collection accumulates faster than the paperwork around it. Pieces move, values change, and
-            the details end up spread across people and places.
-          </p>
-          <p className="body-copy body-copy-followup">
-            Vaultier gives every piece a permanent, dynamic record and coordinates the valuers, insurers, restorers
-            and specialists who work on it, so the collection is looked after without the collector having to.
-          </p>
-        </section>
+        {textileChapters.map((chapter, index) => {
+          const headingId = `${chapter.id}-heading`;
+          const Heading = index === 0 ? "h1" : "h2";
 
-        <section ref={textileCopyTwo} className="editorial-copy opening-copy textile-chapter" aria-labelledby="people-heading">
-          <p className="eyebrow">For the people who look after it</p>
-          <h2 id="people-heading" className="homepage-editorial-heading">
-            Much of a collection
-            <br className="editorial-heading-break editorial-heading-break--mobile" />
-            {" "}is managed by
-            <br className="editorial-heading-break editorial-heading-break--desktop" />
-            {" "}someone
-            <br className="editorial-heading-break editorial-heading-break--mobile" />
-            {" "}trusted to hold it together
-          </h2>
-          <p className="body-copy">
-            Vaultier is built for them too: trustees, personal assistants and family offices who keep a collection in
-            order on the collector&apos;s behalf, with the access they need and nothing they don&apos;t.
-          </p>
-        </section>
+          return (
+            <section
+              id={chapter.id}
+              key={chapter.id}
+              ref={(node) => {
+                textileChapterRefs.current[index] = node;
+              }}
+              className={`editorial-copy opening-copy textile-chapter${chapter.compact ? " textile-chapter--compact" : ""}`}
+              aria-labelledby={headingId}
+            >
+              {chapter.eyebrow ? <p className="eyebrow">{chapter.eyebrow}</p> : null}
+              <Heading id={headingId} className="homepage-editorial-heading">
+                {chapter.heading}
+              </Heading>
+              {chapter.paragraphs.map((paragraph, paragraphIndex) => (
+                <p
+                  key={paragraph}
+                  className={`body-copy${paragraphIndex > 0 ? " body-copy-followup" : ""}`}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </section>
+          );
+        })}
 
-        <div ref={finalPaper} className={`final-paper${invitationVisible ? " is-active" : ""}`} aria-hidden={!invitationVisible}>
-          <div ref={invitationCopy} className="editorial-copy invitation-copy">
-            <p className="eyebrow">How we work</p>
-            <h2 className="homepage-editorial-heading">
-              Vaultier&apos;s technology
-              <br className="editorial-heading-break editorial-heading-break--mobile" />
-              {" "}monitors and
-              <br className="editorial-heading-break" />
-              {" "}manages the collection
-            </h2>
+        <div
+          ref={finalPaper}
+          className={`final-paper${privateEnquiryVisible ? " is-active" : ""}`}
+          aria-hidden={!privateEnquiryVisible}
+        >
+          <div ref={privateEnquiryCopy} className="editorial-copy invitation-copy">
+            <p className="eyebrow">Private Enquiry</p>
+            <h2 className="homepage-editorial-heading">Place the collection under private management</h2>
             <p className="body-copy final-body-copy">
-              The team provides the judgement and discretion that technology cannot. Membership is by application.
-              Vaultier accepts a limited number of collections so each is looked after properly.
+              Vaultier accepts a limited number of collections by application or invitation.
             </p>
-            <Link href="/private-enquiry" className="invitation-link" tabIndex={invitationVisible ? 0 : -1}>
-              <span>Enquire Privately</span>
+            <p className="body-copy body-copy-followup final-body-copy">
+              An enquiry may be made by a collector, family office, personal assistant or other authorised
+              representative. All information submitted is treated in confidence.
+            </p>
+            <Link href="/private-enquiry" className="invitation-link" tabIndex={privateEnquiryVisible ? 0 : -1}>
+              <span>Make a private enquiry</span>
             </Link>
           </div>
-          <nav className="final-paper-nav" aria-label="Website navigation">
-            <Link href="/privacy" tabIndex={invitationVisible ? 0 : -1}>Privacy</Link>
-            <Link href="/terms" tabIndex={invitationVisible ? 0 : -1}>Terms</Link>
+        </div>
+
+        <div
+          id="security"
+          ref={securityPaper}
+          className={`final-paper security-paper${securityVisible ? " is-active" : ""}`}
+          aria-hidden={!securityVisible}
+        >
+          <div ref={securityCopy} className="editorial-copy invitation-copy security-copy">
+            <h2 className="homepage-editorial-heading">Privacy and Security</h2>
+            <p className="body-copy final-body-copy">
+              Vaultier uses encrypted systems and permission-based access to protect sensitive collection
+              information. The locations of your pieces are visible only to people who have been expressly
+              authorised. Identity checks are required before sensitive instructions are carried out. Your privacy is
+              our utmost concern.
+            </p>
+          </div>
+          <nav ref={securityNav} className="final-paper-nav" aria-label="Website navigation">
+            <Link href="/privacy" tabIndex={securityVisible ? 0 : -1}>Privacy</Link>
+            <a
+              href="#security"
+              onClick={(event) => handleChapterClick(event, chapterScrollProgress.security)}
+              tabIndex={securityVisible ? 0 : -1}
+            >
+              Security
+            </a>
+            <Link href="/terms" tabIndex={securityVisible ? 0 : -1}>Terms</Link>
+            <a href="mailto:operations@accessvaultier.co" tabIndex={securityVisible ? 0 : -1}>Contact</a>
           </nav>
         </div>
       </section>
