@@ -20,21 +20,24 @@ const mobileLetterLayout = [
 ];
 
 const chapterScrollProgress = {
-  about: 0.13,
-  privateClient: 0.69,
-  security: 0.96,
+  about: 0.16,
+  services: 0.36,
+  privateClient: {
+    desktop: 0.36,
+    mobile: 0.615,
+  },
+  security: 1,
 } as const;
 
-const textileChapters = [
-  {
-    id: "about",
-    eyebrow: null,
-    heading: "Grow and preserve your collection through time with Vaultier",
-    paragraphs: [
-      "Vaultier assigns every valuable piece a permanent digital record, with technology that handles insurance, valuations, care and specialist work. A White Glove team is dedicated entirely to the care and expansion of your collection.",
-    ],
-    compact: false,
-  },
+const aboutChapter = {
+  id: "about",
+  heading: "Grow and preserve your collection through time with Vaultier",
+  paragraphs: [
+    "Vaultier assigns every valuable piece a permanent digital record, with technology that handles insurance, valuations, care and specialist work. A White Glove team is dedicated entirely to the care and expansion of your collection.",
+  ],
+} as const;
+
+const serviceChapters = [
   {
     id: "vaultier-record",
     eyebrow: "The Vaultier Record: A tool for wealth preservation",
@@ -42,7 +45,6 @@ const textileChapters = [
     paragraphs: [
       "Each Vaultier Record details the piece’s ownership, provenance, documentation, valuation, condition and location. The Record is updated as the piece is insured, moved, restored, sold, gifted or inherited.",
     ],
-    compact: false,
   },
   {
     id: "white-glove",
@@ -51,7 +53,6 @@ const textileChapters = [
     paragraphs: [
       "Vaultier arranges the work each piece requires, from insurance and valuation to restoration, maintenance, transport and storage. A small team is dedicated to the care and maintenance of your collection.",
     ],
-    compact: false,
   },
   {
     id: "collection-guidance",
@@ -60,7 +61,6 @@ const textileChapters = [
     paragraphs: [
       "Before a piece is acquired or sold, Vaultier arranges independent advice on provenance, authenticity, condition and value from approved and vetted specialists within our private Guild.",
     ],
-    compact: true,
   },
   {
     id: "private-client-access",
@@ -69,9 +69,16 @@ const textileChapters = [
     paragraphs: [
       "Family offices, authorised representatives and personal assistants can manage the collection on the collector’s behalf, with the collector as involved as they choose to be.",
     ],
-    compact: true,
   },
 ] as const;
+
+type ChapterProgress = number | { desktop: number; mobile: number };
+
+function resolveChapterProgress(progress: ChapterProgress) {
+  if (typeof progress === "number") return progress;
+
+  return window.matchMedia("(max-width: 760px)").matches ? progress.mobile : progress.desktop;
+}
 
 function scrollToExperienceProgress(experience: HTMLElement, progress: number) {
   const scrollDistance = Math.max(0, experience.offsetHeight - window.innerHeight);
@@ -176,7 +183,9 @@ function LetterpressDefinitions() {
 export default function Home() {
   const experience = useRef<HTMLElement>(null);
   const openingPaper = useRef<HTMLDivElement>(null);
-  const textileChapterRefs = useRef<Array<HTMLElement | null>>([]);
+  const aboutSection = useRef<HTMLElement>(null);
+  const servicesSection = useRef<HTMLElement>(null);
+  const servicesGrid = useRef<HTMLDivElement>(null);
   const finalPaper = useRef<HTMLDivElement>(null);
   const privateEnquiryCopy = useRef<HTMLDivElement>(null);
   const securityPaper = useRef<HTMLDivElement>(null);
@@ -186,16 +195,26 @@ export default function Home() {
   const [privateEnquiryVisible, setPrivateEnquiryVisible] = useState(false);
   const [securityVisible, setSecurityVisible] = useState(false);
 
-  const handleChapterClick = (event: MouseEvent<HTMLAnchorElement>, progress: number) => {
+  const handleChapterClick = (event: MouseEvent<HTMLAnchorElement>, progress: ChapterProgress) => {
     event.preventDefault();
+    const target = event.currentTarget.getAttribute("href");
+
+    if (target?.startsWith("#")) {
+      window.history.pushState(null, "", target);
+    }
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const target = event.currentTarget.getAttribute("href");
       if (target?.startsWith("#")) {
         document.querySelector(target)?.scrollIntoView({ block: "start" });
       }
     } else if (experience.current) {
-      scrollToExperienceProgress(experience.current, progress);
+      scrollToExperienceProgress(experience.current, resolveChapterProgress(progress));
+    }
+
+    if (target?.startsWith("#")) {
+      window.requestAnimationFrame(() => {
+        (document.querySelector(target) as HTMLElement | null)?.focus({ preventScroll: true });
+      });
     }
   };
 
@@ -223,50 +242,85 @@ export default function Home() {
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             setOpeningInteractive(self.progress < 0.1);
-            setPrivateEnquiryVisible(self.progress >= 0.79 && self.progress < 0.92);
-            setSecurityVisible(self.progress >= 0.91);
+            setPrivateEnquiryVisible(self.progress >= 0.68 && self.progress < 0.9);
+            setSecurityVisible(self.progress >= 0.88);
           },
         },
       });
 
       timeline.to(openingPaper.current, { yPercent: -104, duration: 0.12 }, 0);
 
-      textileChapterRefs.current.forEach((chapter, index) => {
-        if (!chapter) return;
+      const getServicesGridOffset = () => {
+        const section = servicesSection.current;
+        const grid = servicesGrid.current;
 
-        const start = 0.11 + index * 0.135;
-        timeline
-          .fromTo(chapter, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.04 }, start)
-          .to(chapter, { autoAlpha: 0, y: -10, duration: 0.04 }, start + 0.095);
-      });
+        if (!section || !grid || !window.matchMedia("(max-width: 760px)").matches) return 0;
+
+        const styles = window.getComputedStyle(section);
+        const availableHeight =
+          window.innerHeight - Number.parseFloat(styles.paddingTop) - Number.parseFloat(styles.paddingBottom);
+
+        return Math.min(0, availableHeight - grid.scrollHeight);
+      };
 
       timeline
-        .fromTo(finalPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.78)
-        .fromTo(privateEnquiryCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.05 }, 0.8)
-        .to(privateEnquiryCopy.current, { opacity: 0, y: -10, duration: 0.04 }, 0.89)
-        .fromTo(securityPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.91)
-        .fromTo(securityCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.04 }, 0.93)
-        .fromTo(securityNav.current, { opacity: 0 }, { opacity: 1, duration: 0.03 }, 0.96);
+        .fromTo(aboutSection.current, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.04 }, 0.12)
+        .to(aboutSection.current, { autoAlpha: 0, y: -10, duration: 0.04 }, 0.27)
+        .fromTo(servicesSection.current, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.04 }, 0.31)
+        .fromTo(servicesGrid.current, { y: 0 }, { y: getServicesGridOffset, duration: 0.27 }, 0.35)
+        .to(servicesSection.current, { autoAlpha: 0, duration: 0.04 }, 0.64);
+
+      timeline
+        .fromTo(finalPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.68)
+        .fromTo(privateEnquiryCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.05 }, 0.7)
+        .to(privateEnquiryCopy.current, { opacity: 0, y: -10, duration: 0.04 }, 0.85)
+        .fromTo(securityPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.88)
+        .fromTo(securityCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.04 }, 0.9)
+        .fromTo(securityNav.current, { opacity: 0 }, { opacity: 1, duration: 0.03 }, 0.95);
     }, experience);
 
     let hashFrame = 0;
-    const hashProgress = {
-      "#about": chapterScrollProgress.about,
-      "#private-client-access": chapterScrollProgress.privateClient,
-      "#security": chapterScrollProgress.security,
-    }[window.location.hash];
+    const navigateToHash = () => {
+      const serviceProgress = window.matchMedia("(max-width: 760px)").matches
+        ? {
+            "#services": 0.34,
+            "#vaultier-record": 0.34,
+            "#white-glove": 0.42,
+            "#collection-guidance": 0.5,
+            "#private-client-access": 0.615,
+          }
+        : {
+            "#services": chapterScrollProgress.services,
+            "#vaultier-record": chapterScrollProgress.services,
+            "#white-glove": chapterScrollProgress.services,
+            "#collection-guidance": chapterScrollProgress.services,
+            "#private-client-access": chapterScrollProgress.services,
+          };
+      const hashProgress = {
+        "": 0,
+        "#about": chapterScrollProgress.about,
+        ...serviceProgress,
+        "#security": chapterScrollProgress.security,
+      }[window.location.hash];
 
-    if (hashProgress !== undefined) {
+      if (hashProgress === undefined) return;
+
       hashFrame = window.requestAnimationFrame(() => {
         ScrollTrigger.refresh();
         if (experience.current) {
           scrollToExperienceProgress(experience.current, hashProgress);
         }
       });
-    }
+    };
+
+    navigateToHash();
+    window.addEventListener("hashchange", navigateToHash);
+    window.addEventListener("popstate", navigateToHash);
 
     return () => {
       window.cancelAnimationFrame(hashFrame);
+      window.removeEventListener("hashchange", navigateToHash);
+      window.removeEventListener("popstate", navigateToHash);
       context.revert();
     };
   }, []);
@@ -330,35 +384,56 @@ export default function Home() {
           </nav>
         </div>
 
-        {textileChapters.map((chapter, index) => {
-          const headingId = `${chapter.id}-heading`;
-          const Heading = index === 0 ? "h1" : "h2";
+        <section
+          id={aboutChapter.id}
+          ref={aboutSection}
+          className="editorial-copy opening-copy textile-chapter"
+          aria-labelledby="about-heading"
+          tabIndex={-1}
+        >
+          <h1 id="about-heading" className="homepage-editorial-heading">
+            {aboutChapter.heading}
+          </h1>
+          {aboutChapter.paragraphs.map((paragraph) => (
+            <p key={paragraph} className="body-copy">
+              {paragraph}
+            </p>
+          ))}
+        </section>
 
-          return (
-            <section
-              id={chapter.id}
-              key={chapter.id}
-              ref={(node) => {
-                textileChapterRefs.current[index] = node;
-              }}
-              className={`editorial-copy opening-copy textile-chapter${chapter.compact ? " textile-chapter--compact" : ""}`}
-              aria-labelledby={headingId}
-            >
-              {chapter.eyebrow ? <p className="eyebrow">{chapter.eyebrow}</p> : null}
-              <Heading id={headingId} className="homepage-editorial-heading">
-                {chapter.heading}
-              </Heading>
-              {chapter.paragraphs.map((paragraph, paragraphIndex) => (
-                <p
-                  key={paragraph}
-                  className={`body-copy${paragraphIndex > 0 ? " body-copy-followup" : ""}`}
+        <section
+          id="services"
+          ref={servicesSection}
+          className="editorial-copy opening-copy services-grid-section"
+          aria-label="Vaultier collection services"
+          tabIndex={-1}
+        >
+          <div ref={servicesGrid} className="services-grid">
+            {serviceChapters.map((chapter) => {
+              const headingId = `${chapter.id}-heading`;
+
+              return (
+                <article
+                  id={chapter.id}
+                  key={chapter.id}
+                  className="services-grid-item"
+                  aria-labelledby={headingId}
+                  tabIndex={-1}
                 >
-                  {paragraph}
-                </p>
-              ))}
-            </section>
-          );
-        })}
+                  {chapter.eyebrow ? <p className="eyebrow">{chapter.eyebrow}</p> : null}
+                  <h2 id={headingId} className="homepage-editorial-heading">
+                    {chapter.heading}
+                  </h2>
+                  {chapter.paragraphs.map((paragraph) => (
+                    <p key={paragraph} className="body-copy">
+                      {paragraph}
+                    </p>
+                  ))}
+                </article>
+              );
+            })}
+          </div>
+        </section>
 
         <div
           ref={finalPaper}
