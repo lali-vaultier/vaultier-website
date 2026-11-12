@@ -111,12 +111,12 @@ a { color: inherit; }
   shape-rendering: geometricPrecision;
 }
 .opening-paper-subheading {
-  margin: clamp(12px, 1.8vh, 20px) 0 0;
-  transform: translateY(clamp(-112px, -8vw, -72px));
+  margin: 0;
+  transform: translateY(clamp(-125px, -12.4vw, -89px));
   color: var(--deep-teal-blue);
-  font-family: var(--font-editorial-hairline), Georgia, serif;
+  font-family: var(--font-editorial), Georgia, serif;
   font-size: clamp(18px, 1.8vw, 26px);
-  font-style: normal;
+  font-style: italic;
   font-weight: 100;
   letter-spacing: .015em;
   line-height: 1.1;
@@ -1103,8 +1103,8 @@ a { color: inherit; }
   .opening-paper-content { width: 86vw; }
   .opening-paper-subheading {
     max-width: 78vw;
-    margin-top: 10px;
-    transform: translateY(-44px);
+    margin-top: 0;
+    transform: translateY(-56px);
     font-size: 17px;
     letter-spacing: .01em;
   }
