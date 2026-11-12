@@ -286,7 +286,8 @@ a { color: inherit; }
   font-size: clamp(13px, 1.02vw, 15px);
   line-height: 1.7;
 }
-#about .body-copy {
+#about .body-copy,
+#vaultier-record .body-copy {
   text-align: center;
   text-wrap: balance;
 }

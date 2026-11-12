@@ -40,8 +40,7 @@ const textileChapters = [
     eyebrow: "The Vaultier Record: A tool for wealth preservation",
     heading: "Preserve the identity, history and value of every piece",
     paragraphs: [
-      "Each Vaultier Record details the piece’s ownership, provenance, documentation, valuation, condition and location.",
-      "The Record is updated as the piece is insured, moved, restored, sold, gifted or inherited.",
+      "Each Vaultier Record details the piece’s ownership, provenance, documentation, valuation, condition and location. The Record is updated as the piece is insured, moved, restored, sold, gifted or inherited.",
     ],
     compact: false,
   },
