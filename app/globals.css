@@ -328,6 +328,10 @@ a { color: inherit; }
   line-height: 1.7;
 }
 .invitation-copy .final-body-copy { width: min(720px, 78vw); }
+.invitation-copy .balanced-body-copy {
+  text-align: center;
+  text-wrap: balance;
+}
 .invitation-link { justify-self: center; margin-top: 42px; padding: 15px 30px; }
 
 /* Shared secondary navigation */

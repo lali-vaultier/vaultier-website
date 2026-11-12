@@ -371,7 +371,7 @@ export default function Home() {
             <p className="body-copy final-body-copy">
               Vaultier accepts a limited number of collections by application or invitation.
             </p>
-            <p className="body-copy body-copy-followup final-body-copy">
+            <p className="body-copy body-copy-followup final-body-copy balanced-body-copy">
               An enquiry may be made by a collector, family office, personal assistant or other authorised
               representative. All information submitted is treated in confidence.
             </p>
