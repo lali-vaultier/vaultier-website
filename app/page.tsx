@@ -31,8 +31,7 @@ const textileChapters = [
     eyebrow: null,
     heading: "Grow and preserve your collection through time with Vaultier",
     paragraphs: [
-      "Vaultier assigns every valuable piece a permanent digital record, with technology that handles insurance, valuations, care and specialist work.",
-      "A White Glove team is dedicated entirely to the care and expansion of your collection.",
+      "Vaultier assigns every valuable piece a permanent digital record, with technology that handles insurance, valuations, care and specialist work. A White Glove team is dedicated entirely to the care and expansion of your collection.",
     ],
     compact: false,
   },

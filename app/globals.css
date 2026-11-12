@@ -286,6 +286,10 @@ a { color: inherit; }
   font-size: clamp(13px, 1.02vw, 15px);
   line-height: 1.7;
 }
+#about .body-copy {
+  text-align: center;
+  text-wrap: balance;
+}
 .textile-chapter .body-copy-followup,
 .invitation-copy .body-copy-followup { margin-top: 18px; }
 .final-paper {
