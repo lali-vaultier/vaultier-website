@@ -288,7 +288,8 @@ a { color: inherit; }
 }
 #about .body-copy,
 #vaultier-record .body-copy,
-#white-glove .body-copy {
+#white-glove .body-copy,
+#collection-guidance .body-copy {
   text-align: center;
   text-wrap: balance;
 }
