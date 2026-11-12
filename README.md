@@ -12,10 +12,10 @@ The website is built as a standalone Next.js application and is ready for deploy
 - Vertical VLTR arrangement on mobile
 - Textured buttercream cardstock and the approved deep-teal textile imagery
 - Final printed invitation with a working application CTA
-- Two scroll-revealed editorial chapters on the deep-teal textile
-- Private Enquiry, Privacy Policy and Terms of Use routes
-- Private enquiry form with its existing fields and submission handling preserved
-- Server-side form validation
+- Scroll-revealed introduction and four-service editorial grid on deep teal
+- Private Enquiry, Professional Access, Privacy Policy and Terms of Use routes
+- Separate private-client enquiry and professional-network application forms
+- Server-side validation and email delivery for both application types
 - Webhook-ready submission endpoint
 - Local font and image assets
 - Reduced-motion support
@@ -105,14 +105,16 @@ Runs the production build locally after `npm run build`.
 |---|---|
 | `/` | Interactive Vaultier invitation |
 | `/private-enquiry` | Public enquiry form |
+| `/professional-access` | Professional network information and application form |
 | `/request-invitation` | Redirects legacy links to `/private-enquiry` |
-| `/privacy` | Draft Privacy Policy placeholder pending approved legal copy |
+| `/privacy` | Vaultier Privacy Policy |
 | `/terms` | Vaultier Terms of Use |
 | `/api/request-invitation` | Server-side form submission endpoint |
+| `/api/professional-applications` | Server-side professional application endpoint |
 
 ## Content Status
 
-The approved editorial copy is part of the homepage invitation experience: two chapters appear over the deep-teal textile as the visitor scrolls, followed by the final cardstock invitation. The supplied Terms of Use is published at `/terms` with its legal placeholders retained for completion; the Privacy Policy remains a clearly labelled draft placeholder until its approved copy is integrated.
+The approved editorial copy is part of the homepage invitation experience: an introduction and four-service grid appear over deep teal as the visitor scrolls, followed by the Applications and Invitations and Privacy and Security cardstock screens. Approved legal copy is published at `/privacy` and `/terms`.
 
 ## Environment Variables
 
@@ -120,12 +122,17 @@ Create `.env.local` for local development. Do not commit this file.
 
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_PROFESSIONAL_SIGN_IN_URL=https://accessvaultier.co/
 
 INVITATION_FORM_WEBHOOK_URL=
 INVITATION_FORM_API_KEY=
 RESEND_API_KEY=
 INVITATION_FORM_RECIPIENT_EMAIL=applications@accessvaultier.co
 INVITATION_FORM_FROM_EMAIL=applications@accessvaultier.co
+PROFESSIONAL_APPLICATIONS_RECIPIENT_EMAIL=applications@accessvaultier.co
+PROFESSIONAL_APPLICATIONS_FROM_EMAIL=applications@accessvaultier.co
+PROFESSIONAL_APPLICATIONS_WEBHOOK_URL=
+PROFESSIONAL_APPLICATIONS_API_KEY=
 ```
 
 ### Variable Reference
@@ -133,11 +140,16 @@ INVITATION_FORM_FROM_EMAIL=applications@accessvaultier.co
 | Variable | Required | Description |
 |---|---:|---|
 | `NEXT_PUBLIC_SITE_URL` | Recommended | Public URL of the website |
+| `NEXT_PUBLIC_PROFESSIONAL_SIGN_IN_URL` | Optional | Destination for the Professional Sign In link; defaults to `https://accessvaultier.co/` |
 | `INVITATION_FORM_WEBHOOK_URL` | For live submissions | Secure server endpoint that receives applications |
 | `INVITATION_FORM_API_KEY` | Optional | Bearer token sent to the configured webhook |
 | `RESEND_API_KEY` | Recommended for live submissions | Server-only Resend credential provisioned through Vercel |
 | `INVITATION_FORM_RECIPIENT_EMAIL` | Optional | Destination mailbox; defaults to `applications@accessvaultier.co` |
 | `INVITATION_FORM_FROM_EMAIL` | Optional | Verified sender address; defaults to `applications@accessvaultier.co` |
+| `PROFESSIONAL_APPLICATIONS_RECIPIENT_EMAIL` | Optional | Professional application mailbox; falls back to the private-enquiry recipient |
+| `PROFESSIONAL_APPLICATIONS_FROM_EMAIL` | Optional | Verified professional-application sender; falls back to the private-enquiry sender |
+| `PROFESSIONAL_APPLICATIONS_WEBHOOK_URL` | Optional | Professional application webhook fallback when Resend is not configured |
+| `PROFESSIONAL_APPLICATIONS_API_KEY` | Optional | Bearer token for the professional application webhook |
 
 Only variables prefixed with `NEXT_PUBLIC_` are exposed to the browser.
 
@@ -170,6 +182,14 @@ Authorization: Bearer YOUR_API_KEY
 ```
 
 The success message is only displayed after the server confirms that the receiving endpoint accepted the application.
+
+The Professional Access form submits separately to:
+
+```text
+POST /api/professional-applications
+```
+
+It validates the professional contact, email, discipline, insurance status and experience before sending a distinct professional-application email. Unless overridden with professional-specific environment variables, it reuses the same verified sender and `applications@accessvaultier.co` recipient.
 
 ### Preview Mode
 
@@ -344,11 +364,14 @@ In **Project Settings → Environment Variables**, add:
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
+NEXT_PUBLIC_PROFESSIONAL_SIGN_IN_URL=https://accessvaultier.co/
 INVITATION_FORM_WEBHOOK_URL=https://your-secure-endpoint.com
 INVITATION_FORM_API_KEY=your-secret-key
 RESEND_API_KEY=provisioned-by-vercel-marketplace
 INVITATION_FORM_RECIPIENT_EMAIL=applications@accessvaultier.co
 INVITATION_FORM_FROM_EMAIL=applications@accessvaultier.co
+PROFESSIONAL_APPLICATIONS_RECIPIENT_EMAIL=applications@accessvaultier.co
+PROFESSIONAL_APPLICATIONS_FROM_EMAIL=applications@accessvaultier.co
 ```
 
 Add private variables to the Production environment and any Preview environments that require live submission testing.
@@ -369,6 +392,7 @@ Before launching:
 - Test the vertical mobile VLTR layout.
 - Test with reduced-motion enabled.
 - Test all required form fields.
+- Test the professional discipline selector and insurance choice.
 - Confirm invalid email addresses are rejected.
 - Confirm the configured webhook receives applications.
 - Confirm failed submissions do not show a success state.

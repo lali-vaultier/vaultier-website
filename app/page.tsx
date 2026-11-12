@@ -33,7 +33,8 @@ const aboutChapter = {
   id: "about",
   heading: "Grow and preserve your collection through time with Vaultier",
   paragraphs: [
-    "Vaultier assigns every valuable piece a permanent digital record, with technology that handles insurance, valuations, care and specialist work. A White Glove team is dedicated entirely to the care and expansion of your collection.",
+    "Vaultier assigns every valuable piece a permanent digital record, with technology that handles insurance, valuations, care and specialist work.",
+    "A White Glove team is dedicated entirely to the care and expansion of your collection.",
   ],
 } as const;
 
@@ -379,7 +380,7 @@ export default function Home() {
             >
               Private Client Access
             </a>
-            <Link href="/private-enquiry" tabIndex={openingInteractive ? 0 : -1}>Professional Access</Link>
+            <Link href="/professional-access" tabIndex={openingInteractive ? 0 : -1}>Professional Access</Link>
             <Link href="/private-enquiry" tabIndex={openingInteractive ? 0 : -1}>Private Enquiry</Link>
           </nav>
         </div>
@@ -441,7 +442,7 @@ export default function Home() {
           aria-hidden={!privateEnquiryVisible}
         >
           <div ref={privateEnquiryCopy} className="editorial-copy invitation-copy">
-            <p className="eyebrow">Private Enquiry</p>
+            <p className="eyebrow">Applications and Invitations</p>
             <h2 className="homepage-editorial-heading">Place the collection under private management</h2>
             <p className="body-copy final-body-copy">
               Vaultier accepts a limited number of collections by application or invitation.
@@ -451,7 +452,7 @@ export default function Home() {
               representative. All information submitted is treated in confidence.
             </p>
             <Link href="/private-enquiry" className="invitation-link" tabIndex={privateEnquiryVisible ? 0 : -1}>
-              <span>Make a private enquiry</span>
+              <span>Apply for a Vaultier Account</span>
             </Link>
           </div>
         </div>
@@ -464,11 +465,14 @@ export default function Home() {
         >
           <div ref={securityCopy} className="editorial-copy invitation-copy security-copy">
             <h2 className="homepage-editorial-heading">Privacy and Security</h2>
+            <p className="security-subheading">Your privacy is our utmost concern.</p>
             <p className="body-copy final-body-copy">
-              Vaultier uses encrypted systems and permission-based access to protect sensitive collection
-              information. The locations of your pieces are visible only to people who have been expressly
-              authorised. Identity checks are required before sensitive instructions are carried out. Your privacy is
-              our utmost concern.
+              Vaultier uses encrypted systems and permission-based access to protect sensitive collection information.
+              Item locations are visible only to people who have been expressly authorised.
+            </p>
+            <p className="body-copy body-copy-followup final-body-copy">
+              Important activity is recorded, and identity checks are required before sensitive instructions are
+              carried out.
             </p>
           </div>
           <nav ref={securityNav} className="final-paper-nav" aria-label="Website navigation">

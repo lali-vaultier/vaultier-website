@@ -1,0 +1,18 @@
+export const professionalDisciplineOptions = [
+  "Appraiser or valuer",
+  "Art adviser",
+  "Art lawyer",
+  "Authenticator",
+  "Auction specialist",
+  "Conservator or restorer",
+  "Dealer or gallery",
+  "Insurance broker or adviser",
+  "Provenance researcher",
+  "Specialist cleaner or care provider",
+  "Storage provider",
+  "Stylist or personal shopper",
+  "Transport or logistics provider",
+  "Watch or jewellery specialist",
+  "Vehicle, yacht or aviation specialist",
+  "Other specialist",
+] as const;
