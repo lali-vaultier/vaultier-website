@@ -49,8 +49,7 @@ const textileChapters = [
     eyebrow: null,
     heading: "White Glove: Your Collection in Experienced Hands",
     paragraphs: [
-      "Vaultier arranges the work each piece requires, from insurance and valuation to restoration, maintenance, transport and storage.",
-      "A small team is dedicated to the care and maintenance of your collection.",
+      "Vaultier arranges the work each piece requires, from insurance and valuation to restoration, maintenance, transport and storage. A small team is dedicated to the care and maintenance of your collection.",
     ],
     compact: false,
   },

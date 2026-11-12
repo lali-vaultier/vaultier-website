@@ -287,7 +287,8 @@ a { color: inherit; }
   line-height: 1.7;
 }
 #about .body-copy,
-#vaultier-record .body-copy {
+#vaultier-record .body-copy,
+#white-glove .body-copy {
   text-align: center;
   text-wrap: balance;
 }
