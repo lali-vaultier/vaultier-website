@@ -49,24 +49,24 @@ const serviceChapters = [
   },
   {
     id: "white-glove",
-    eyebrow: null,
-    heading: "White Glove: Your Collection in Experienced Hands",
+    eyebrow: "White Glove",
+    heading: "Your Collection in Experienced Hands",
     paragraphs: [
       "Vaultier arranges the work each piece requires, from insurance and valuation to restoration, maintenance, transport and storage. A small team is dedicated to the care and maintenance of your collection.",
     ],
   },
   {
     id: "collection-guidance",
-    eyebrow: null,
-    heading: "Collection Guidance: Better-informed acquisitions and sales",
+    eyebrow: "Collection Guidance",
+    heading: "Better-informed acquisitions and sales",
     paragraphs: [
       "Before a piece is acquired or sold, Vaultier arranges independent advice on provenance, authenticity, condition and value from approved and vetted specialists within our private Guild.",
     ],
   },
   {
     id: "private-client-access",
-    eyebrow: null,
-    heading: "Private Client Access: For collectors and their authorised representatives",
+    eyebrow: "Private Client Access",
+    heading: "For collectors and their authorised representatives",
     paragraphs: [
       "Family offices, authorised representatives and personal assistants can manage the collection on the collector’s behalf, with the collector as involved as they choose to be.",
     ],
