@@ -112,7 +112,7 @@ a { color: inherit; }
 }
 .opening-paper-subheading {
   margin: 0;
-  transform: translateY(clamp(-125px, -12.4vw, -89px));
+  transform: translateY(clamp(-114px, -11.2vw, -80px));
   color: var(--deep-teal-blue);
   font-family: var(--font-editorial), Georgia, serif;
   font-size: clamp(18px, 1.8vw, 26px);
@@ -1119,7 +1119,7 @@ a { color: inherit; }
   .opening-paper-subheading {
     max-width: 78vw;
     margin-top: 0;
-    transform: translateY(-56px);
+    transform: translateY(-48px);
     font-size: 17px;
     letter-spacing: .01em;
   }
