@@ -267,12 +267,12 @@ export default function Home() {
       timeline
         .fromTo(aboutSection.current, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.04 }, 0.12)
         .to(aboutSection.current, { autoAlpha: 0, y: -10, duration: 0.04 }, 0.27)
-        .fromTo(servicesSection.current, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.04 }, 0.31)
+        .fromTo(servicesSection.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.04 }, 0.31)
         .fromTo(servicesGrid.current, { y: 0 }, { y: getServicesGridOffset, duration: 0.27 }, 0.35)
         .to(servicesSection.current, { autoAlpha: 0, duration: 0.04 }, 0.64);
 
       timeline
-        .fromTo(finalPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.68)
+        .fromTo(finalPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.64)
         .fromTo(privateEnquiryCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.05 }, 0.7)
         .to(privateEnquiryCopy.current, { opacity: 0, y: -10, duration: 0.04 }, 0.85)
         .fromTo(securityPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.88)
