@@ -502,6 +502,7 @@ a { color: inherit; }
   text-transform: uppercase;
 }
 .professional-hero h1,
+.professional-section-heading h1,
 .professional-section-heading h2,
 .professional-membership h2 {
   margin: 0;
@@ -587,7 +588,12 @@ a { color: inherit; }
 }
 .professional-section-heading { margin-bottom: clamp(52px, 6vw, 82px); text-align: center; }
 .professional-section-heading h2,
+.professional-section-heading h1,
 .professional-membership h2 { font-size: clamp(48px, 5.8vw, 78px); line-height: .96; }
+.professional-application-route {
+  border-top: 0;
+  padding-top: clamp(88px, 10vw, 142px);
+}
 .professional-form {
   position: relative;
   display: grid;
@@ -1264,6 +1270,7 @@ a { color: inherit; }
   .professional-application { padding: 68px 0 86px; }
   .professional-section-heading { margin-bottom: 48px; }
   .professional-section-heading h2,
+  .professional-section-heading h1,
   .professional-membership h2 { font-size: clamp(44px, 12vw, 58px); }
   .professional-form { grid-template-columns: 1fr; gap: 16px; }
   .professional-field-wide,
