@@ -194,6 +194,7 @@ a { color: inherit; }
 .final-paper-nav a:focus-visible,
 .secondary-header a:focus-visible,
 .site-footer a:focus-visible,
+.form-back-link:focus-visible,
 .form-route-nav a:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: 6px;
@@ -1136,6 +1137,27 @@ a { color: inherit; }
   width: 100%;
   min-height: 34px;
 }
+.form-back-link {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 6px;
+  transform: translateY(-50%);
+  color: var(--butter-cream);
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .2s ease;
+}
+.form-back-link:hover { color: color-mix(in srgb, var(--butter-cream) 82%, white); }
 .form-route-nav {
   display: flex;
   align-items: center;
@@ -1488,6 +1510,7 @@ a { color: inherit; }
     padding: 18px 20px 20px;
   }
   .form-topbar { margin-bottom: 16px; }
+  .form-back-link { gap: 5px; font-size: 8px; }
   .form-route-nav { flex-wrap: wrap; justify-content: center; gap: 10px 13px; }
   .form-route-nav a { font-size: 8px; }
   .form-frame {

@@ -11,6 +11,10 @@ export default function PrivateEnquiryPage() {
   return (
     <main className="form-page">
       <header className="form-topbar">
+        <Link className="form-back-link" href="/" aria-label="Go back to the Vaultier invitation">
+          <span aria-hidden="true">←</span>
+          Go back
+        </Link>
         <nav className="form-route-nav" aria-label="Website navigation">
           <Link href="/">Home</Link>
           <Link href="/privacy">Privacy</Link>
