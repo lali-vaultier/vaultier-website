@@ -171,7 +171,9 @@ a { color: inherit; }
 .submit-button:active:not(:disabled) { transform: translateY(.5px); }
 .invitation-link:focus-visible,
 .submit-button:focus-visible,
-.opening-paper-nav a:focus-visible,
+.opening-menu-trigger:focus-visible,
+.opening-menu-close:focus-visible,
+.opening-menu-links a:focus-visible,
 .final-paper-nav a:focus-visible,
 .secondary-header a:focus-visible,
 .site-footer a:focus-visible,
@@ -179,7 +181,6 @@ a { color: inherit; }
   outline: 1px solid currentColor;
   outline-offset: 6px;
 }
-.opening-paper-nav,
 .final-paper-nav {
   position: absolute;
   z-index: 2;
@@ -192,26 +193,146 @@ a { color: inherit; }
   letter-spacing: .13em;
   text-transform: uppercase;
 }
-.opening-paper-nav {
-  top: clamp(24px, 3vw, 38px);
-  right: clamp(28px, 5vw, 72px);
-  bottom: auto;
-  left: clamp(28px, 5vw, 72px);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+.opening-menu-trigger,
+.opening-menu-close {
+  display: inline-flex;
   align-items: center;
-  justify-content: stretch;
-  width: auto;
-  gap: clamp(12px, 2vw, 24px);
-  transform: none;
-  white-space: nowrap;
+  justify-content: center;
+  min-width: 68px;
+  min-height: 44px;
+  border: 0;
+  padding: 0;
+  background: transparent;
   color: var(--deep-teal-blue);
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
 }
-.opening-paper-nav a:nth-child(1) { justify-self: start; }
-.opening-paper-nav a:nth-child(2) { justify-self: center; }
-.opening-paper-nav a:nth-child(3) { justify-self: end; }
+.opening-menu-trigger {
+  position: absolute;
+  z-index: 6;
+  top: calc(clamp(24px, 3vw, 38px) - 17px);
+  right: calc(clamp(28px, 5vw, 72px) - 10px);
+  transition: opacity .2s ease, color .2s ease;
+}
+.opening-menu-trigger:hover,
+.opening-menu-close:hover { color: var(--olive-green); }
+.opening-menu-trigger[aria-expanded="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+.opening-menu-scrim {
+  position: absolute;
+  z-index: 7;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(15, 42, 54, .18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  cursor: default;
+  transition: opacity .3s ease, visibility 0s linear .4s;
+}
+.opening-menu-scrim.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+.opening-menu-drawer {
+  position: absolute;
+  z-index: 8;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(430px, 88vw);
+  padding: clamp(28px, 4vw, 46px) clamp(30px, 4.5vw, 56px) clamp(34px, 5vw, 58px);
+  background-color: var(--off-white);
+  background-image:
+    linear-gradient(rgba(246, 244, 242, .5), rgba(246, 244, 242, .5)),
+    url("/images/vaultier-buttercream-fine-cardstock.jpg");
+  background-position: center;
+  background-repeat: repeat, repeat;
+  background-size: auto, 1120px auto;
+  box-shadow: -18px 0 42px rgba(15, 42, 54, .12);
+  transform: translateX(100%);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 400ms cubic-bezier(.64, 0, .22, 1),
+    visibility 0s linear 400ms;
+}
+.opening-menu-drawer.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+.opening-menu-close {
+  align-self: flex-end;
+  margin: -17px -10px 0 0;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .25s ease .18s, transform .25s ease .18s, color .2s ease;
+}
+.opening-menu-drawer.is-open .opening-menu-close {
+  opacity: 1;
+  transform: translateY(0);
+}
+.opening-menu-links {
+  display: grid;
+  margin: auto 0;
+  border-top: 1px solid rgba(66, 51, 31, .15);
+}
+.opening-menu-links a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  min-height: 78px;
+  border-bottom: 1px solid rgba(66, 51, 31, .15);
+  color: var(--deep-teal-blue);
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.2vw, 16px);
+  font-weight: 300;
+  letter-spacing: .035em;
+  line-height: 1.25;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateX(12px);
+  transition:
+    color .2s ease,
+    opacity .3s ease,
+    transform .3s ease;
+}
+.opening-menu-drawer.is-open .opening-menu-links a {
+  opacity: 1;
+  transform: translateX(0);
+}
+.opening-menu-drawer.is-open .opening-menu-links a:nth-child(1) { transition-delay: .16s; }
+.opening-menu-drawer.is-open .opening-menu-links a:nth-child(2) { transition-delay: .21s; }
+.opening-menu-drawer.is-open .opening-menu-links a:nth-child(3) { transition-delay: .26s; }
+.opening-menu-links a:hover { color: var(--olive-green); }
+.opening-menu-arrow {
+  font-size: 15px;
+  font-weight: 300;
+  transition: transform .2s ease;
+}
+.opening-menu-links a:hover .opening-menu-arrow { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .opening-menu-scrim,
+  .opening-menu-drawer,
+  .opening-menu-close,
+  .opening-menu-links a { transition-duration: .01ms; transition-delay: 0s; }
+}
 .final-paper-nav { bottom: clamp(22px, 3vw, 38px); }
-.opening-paper-nav a,
 .final-paper-nav a { text-decoration: none; }
 
 .editorial-copy {
@@ -1215,16 +1336,14 @@ a { color: inherit; }
   .security-copy .body-copy { margin-top: 18px; font-size: 12px; line-height: 1.55; }
   .security-copy .body-copy-followup { margin-top: 12px; }
   .invitation-link { margin-top: 34px; padding: 14px 22px; }
-  .opening-paper-nav {
-    top: 18px;
-    right: 14px;
-    bottom: auto;
-    left: 14px;
-    width: auto;
-    gap: 8px;
-    transform: none;
-    font-size: 7px;
-    letter-spacing: .08em;
+  .opening-menu-trigger { top: 5px; right: 12px; }
+  .opening-menu-drawer {
+    width: 100vw;
+    padding: 26px 26px 34px;
+  }
+  .opening-menu-links a {
+    min-height: 74px;
+    font-size: 15px;
   }
   .final-paper-nav { bottom: 20px; }
   .secondary-header { min-height: 82px; padding: 20px 22px; }

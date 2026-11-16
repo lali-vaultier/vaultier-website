@@ -184,6 +184,9 @@ function LetterpressDefinitions() {
 export default function Home() {
   const experience = useRef<HTMLElement>(null);
   const openingPaper = useRef<HTMLDivElement>(null);
+  const openingMenuButton = useRef<HTMLButtonElement>(null);
+  const openingMenuDrawer = useRef<HTMLElement>(null);
+  const openingMenuCloseButton = useRef<HTMLButtonElement>(null);
   const aboutSection = useRef<HTMLElement>(null);
   const servicesSection = useRef<HTMLElement>(null);
   const servicesGrid = useRef<HTMLDivElement>(null);
@@ -193,6 +196,7 @@ export default function Home() {
   const securityCopy = useRef<HTMLDivElement>(null);
   const securityNav = useRef<HTMLElement>(null);
   const [openingInteractive, setOpeningInteractive] = useState(true);
+  const [openingMenuOpen, setOpeningMenuOpen] = useState(false);
   const [privateEnquiryVisible, setPrivateEnquiryVisible] = useState(false);
   const [securityVisible, setSecurityVisible] = useState(false);
 
@@ -219,6 +223,59 @@ export default function Home() {
     }
   };
 
+  const closeOpeningMenu = (restoreFocus = false) => {
+    if (restoreFocus) {
+      openingMenuButton.current?.focus();
+    }
+
+    setOpeningMenuOpen(false);
+  };
+
+  useEffect(() => {
+    if (!openingMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const focusFrame = window.requestAnimationFrame(() => openingMenuCloseButton.current?.focus());
+
+    document.body.style.overflow = "hidden";
+
+    const handleMenuKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        openingMenuButton.current?.focus();
+        setOpeningMenuOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = openingMenuDrawer.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])',
+      );
+
+      if (!focusable?.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleMenuKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleMenuKeyDown);
+    };
+  }, [openingMenuOpen]);
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -242,7 +299,10 @@ export default function Home() {
           scrub: 0.65,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            setOpeningInteractive(self.progress < 0.1);
+            const nextOpeningInteractive = self.progress < 0.1;
+
+            setOpeningInteractive(nextOpeningInteractive);
+            if (!nextOpeningInteractive) setOpeningMenuOpen(false);
             setPrivateEnquiryVisible(self.progress >= 0.68 && self.progress < 0.9);
             setSecurityVisible(self.progress >= 0.88);
           },
@@ -372,17 +432,76 @@ export default function Home() {
             </svg>
             <p className="opening-paper-subheading">Private Collection Management</p>
           </div>
-          <nav className="opening-paper-nav" aria-label="Opening navigation">
-            <a
-              href="#private-client-access"
-              onClick={(event) => handleChapterClick(event, chapterScrollProgress.privateClient)}
-              tabIndex={openingInteractive ? 0 : -1}
+          <button
+            ref={openingMenuButton}
+            type="button"
+            className="opening-menu-trigger"
+            aria-expanded={openingMenuOpen}
+            aria-controls="opening-menu-drawer"
+            tabIndex={openingInteractive ? 0 : -1}
+            onClick={() => setOpeningMenuOpen(true)}
+          >
+            Menu <span aria-hidden="true">+</span>
+          </button>
+
+          <button
+            type="button"
+            className={`opening-menu-scrim${openingMenuOpen ? " is-open" : ""}`}
+            aria-label="Close menu"
+            aria-hidden={!openingMenuOpen}
+            tabIndex={openingMenuOpen ? 0 : -1}
+            onClick={() => closeOpeningMenu(true)}
+          />
+
+          <aside
+            id="opening-menu-drawer"
+            ref={openingMenuDrawer}
+            className={`opening-menu-drawer${openingMenuOpen ? " is-open" : ""}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Website menu"
+            aria-hidden={!openingMenuOpen}
+          >
+            <button
+              ref={openingMenuCloseButton}
+              type="button"
+              className="opening-menu-close"
+              tabIndex={openingMenuOpen ? 0 : -1}
+              onClick={() => closeOpeningMenu(true)}
             >
-              Private Client Access
-            </a>
-            <Link href="/professional-access" tabIndex={openingInteractive ? 0 : -1}>Professional Access</Link>
-            <Link href="/private-enquiry" tabIndex={openingInteractive ? 0 : -1}>Private Enquiry</Link>
-          </nav>
+              Close <span aria-hidden="true">−</span>
+            </button>
+
+            <nav className="opening-menu-links" aria-label="Opening navigation">
+              <a
+                href="#private-client-access"
+                tabIndex={openingMenuOpen ? 0 : -1}
+                onClick={(event) => {
+                  closeOpeningMenu();
+                  handleChapterClick(event, chapterScrollProgress.privateClient);
+                }}
+              >
+                <span>Private Client Access</span>
+                <span className="opening-menu-arrow" aria-hidden="true">→</span>
+              </a>
+              <Link
+                href="/professional-access"
+                tabIndex={openingMenuOpen ? 0 : -1}
+                onClick={() => closeOpeningMenu()}
+              >
+                <span>Professional Access</span>
+                <span className="opening-menu-arrow" aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="/private-enquiry"
+                tabIndex={openingMenuOpen ? 0 : -1}
+                onClick={() => closeOpeningMenu()}
+              >
+                <span>Private Enquiry</span>
+                <span className="opening-menu-arrow" aria-hidden="true">→</span>
+              </Link>
+            </nav>
+          </aside>
         </div>
 
         <section
