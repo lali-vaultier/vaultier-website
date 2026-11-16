@@ -81,8 +81,23 @@ a { color: inherit; }
   inset: 0;
   display: grid;
   place-items: center;
-  will-change: transform;
+  background: transparent;
+  box-shadow: none;
+  pointer-events: none;
+}
+.opening-paper-surface {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-color: var(--off-white);
+  background-image:
+    linear-gradient(rgba(246, 244, 242, .4), rgba(246, 244, 242, .4)),
+    url("/images/vaultier-buttercream-fine-cardstock.jpg");
+  background-position: center;
+  background-repeat: repeat, repeat;
+  background-size: auto, 1120px auto;
   box-shadow: 0 7px 24px rgba(5, 18, 23, .22);
+  will-change: opacity;
 }
 .opening-paper-content {
   position: relative;
@@ -90,6 +105,8 @@ a { color: inherit; }
   display: grid;
   justify-items: center;
   width: min(918px, 88vw);
+  transform-origin: 50% 46%;
+  will-change: opacity, transform;
 }
 .blind-deboss-mark {
   display: block;
@@ -213,12 +230,13 @@ a { color: inherit; }
   cursor: pointer;
 }
 .opening-menu-trigger {
-  position: absolute;
-  z-index: 6;
+  position: fixed;
+  z-index: 10;
   top: calc(clamp(24px, 3vw, 38px) - 17px);
   right: calc(clamp(28px, 5vw, 72px) - 10px);
   transition: opacity .2s ease, color .2s ease;
 }
+.opening-menu-trigger.is-on-dark { color: var(--off-white); }
 .opening-menu-trigger:hover,
 .opening-menu-close:hover { color: var(--olive-green); }
 .opening-menu-trigger[aria-expanded="true"] {
@@ -226,8 +244,8 @@ a { color: inherit; }
   pointer-events: none;
 }
 .opening-menu-scrim {
-  position: absolute;
-  z-index: 7;
+  position: fixed;
+  z-index: 11;
   inset: 0;
   border: 0;
   padding: 0;
@@ -245,8 +263,8 @@ a { color: inherit; }
   transition-delay: 0s;
 }
 .opening-menu-drawer {
-  position: absolute;
-  z-index: 8;
+  position: fixed;
+  z-index: 12;
   top: 0;
   right: 0;
   bottom: 0;
@@ -433,6 +451,7 @@ a { color: inherit; }
   visibility: hidden;
 }
 .services-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
@@ -445,6 +464,8 @@ a { color: inherit; }
   will-change: transform;
 }
 .services-grid-item {
+  position: relative;
+  z-index: 1;
   display: flex;
   min-width: 0;
   flex-direction: column;
@@ -459,12 +480,32 @@ a { color: inherit; }
 .services-grid-item:focus {
   outline: none;
 }
-.services-grid-item:nth-child(odd) {
-  border-right: 1px solid rgba(15, 42, 54, .16);
+.services-grid-dividers {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
-.services-grid-item:nth-child(-n + 2) {
-  border-bottom: 1px solid rgba(15, 42, 54, .16);
+.services-grid-divider {
+  position: absolute;
+  display: block;
+  background: rgba(15, 42, 54, .16);
+  will-change: transform;
 }
+.services-grid-divider-vertical {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+}
+.services-grid-divider-horizontal {
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+}
+.services-grid-divider-mobile { display: none; }
 .services-grid-item .eyebrow {
   margin-bottom: 16px;
   color: var(--olive-green);
@@ -1329,15 +1370,17 @@ a { color: inherit; }
     min-height: 62svh;
     padding: 38px 24px;
   }
-  .services-grid-item:nth-child(odd) {
-    border-right: 0;
+  .services-grid-divider-vertical,
+  .services-grid-divider-horizontal { display: none; }
+  .services-grid-divider-mobile {
+    right: 0;
+    left: 0;
+    display: block;
+    height: 1px;
   }
-  .services-grid-item:nth-child(-n + 2) {
-    border-bottom: 0;
-  }
-  .services-grid-item:not(:last-child) {
-    border-bottom: 1px solid rgba(15, 42, 54, .16);
-  }
+  .services-grid-divider-mobile-one { top: 25%; }
+  .services-grid-divider-mobile-two { top: 50%; }
+  .services-grid-divider-mobile-three { top: 75%; }
   .services-grid-item .homepage-editorial-heading {
     font-size: clamp(32px, 9vw, 44px);
     line-height: .98;
@@ -1482,6 +1525,9 @@ a { color: inherit; }
   .textile-chapter,
   .services-grid-section,
   .final-paper { position: relative; min-height: 100svh; transform: none !important; }
+  .opening-paper-surface,
+  .opening-paper-content,
+  .services-grid-divider { visibility: visible !important; opacity: 1 !important; transform: none !important; }
   .textile-chapter,
   .services-grid-section {
     inset: auto;

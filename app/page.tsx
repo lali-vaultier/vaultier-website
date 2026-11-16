@@ -183,20 +183,22 @@ function LetterpressDefinitions() {
 
 export default function Home() {
   const experience = useRef<HTMLElement>(null);
-  const openingPaper = useRef<HTMLDivElement>(null);
+  const openingPaperSurface = useRef<HTMLDivElement>(null);
+  const openingPaperContent = useRef<HTMLDivElement>(null);
   const openingMenuButton = useRef<HTMLButtonElement>(null);
   const openingMenuDrawer = useRef<HTMLElement>(null);
   const openingMenuCloseButton = useRef<HTMLButtonElement>(null);
   const aboutSection = useRef<HTMLElement>(null);
   const servicesSection = useRef<HTMLElement>(null);
   const servicesGrid = useRef<HTMLDivElement>(null);
+  const servicesDividers = useRef<HTMLDivElement>(null);
   const finalPaper = useRef<HTMLDivElement>(null);
   const privateEnquiryCopy = useRef<HTMLDivElement>(null);
   const securityPaper = useRef<HTMLDivElement>(null);
   const securityCopy = useRef<HTMLDivElement>(null);
   const securityNav = useRef<HTMLElement>(null);
-  const [openingInteractive, setOpeningInteractive] = useState(true);
   const [openingMenuOpen, setOpeningMenuOpen] = useState(false);
+  const [menuOnDark, setMenuOnDark] = useState(false);
   const [privateEnquiryVisible, setPrivateEnquiryVisible] = useState(false);
   const [securityVisible, setSecurityVisible] = useState(false);
 
@@ -281,17 +283,42 @@ export default function Home() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduceMotion) {
+      const updateReducedMotionMenuTone = () => {
+        const aboutRect = aboutSection.current?.getBoundingClientRect();
+        setMenuOnDark(Boolean(aboutRect && aboutRect.top <= 56 && aboutRect.bottom > 56));
+      };
       const frame = window.requestAnimationFrame(() => {
-        setOpeningInteractive(true);
         setPrivateEnquiryVisible(true);
         setSecurityVisible(true);
+        updateReducedMotionMenuTone();
       });
-      return () => window.cancelAnimationFrame(frame);
+      window.addEventListener("scroll", updateReducedMotionMenuTone, { passive: true });
+      return () => {
+        window.cancelAnimationFrame(frame);
+        window.removeEventListener("scroll", updateReducedMotionMenuTone);
+      };
     }
 
     const context = gsap.context(() => {
+      const aboutRevealItems = Array.from(aboutSection.current?.children ?? []);
+      const serviceItems = Array.from(
+        servicesSection.current?.querySelectorAll<HTMLElement>(".services-grid-item") ?? [],
+      );
+      const serviceRevealItems = serviceItems.flatMap((item) => Array.from(item.children));
+      const dividerLines = Array.from(servicesDividers.current?.children ?? []);
+      const privateEnquiryRevealItems = Array.from(privateEnquiryCopy.current?.children ?? []);
+      const securityRevealItems = Array.from(securityCopy.current?.children ?? []);
+      const isMobile = window.matchMedia("(max-width: 760px)").matches;
+
+      gsap.set(aboutRevealItems, { autoAlpha: 0, y: 18 });
+      gsap.set(serviceRevealItems, { autoAlpha: 0, y: 16 });
+      gsap.set(dividerLines, { scale: 0, transformOrigin: "center center" });
+      gsap.set(privateEnquiryRevealItems, { autoAlpha: 0, y: 16 });
+      gsap.set(securityRevealItems, { autoAlpha: 0, y: 14 });
+      gsap.set(securityNav.current, { autoAlpha: 0, y: 8 });
+
       const timeline = gsap.timeline({
-        defaults: { ease: "none" },
+        defaults: { ease: "power2.out" },
         scrollTrigger: {
           trigger: experience.current,
           start: "top top",
@@ -299,17 +326,24 @@ export default function Home() {
           scrub: 0.65,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const nextOpeningInteractive = self.progress < 0.1;
-
-            setOpeningInteractive(nextOpeningInteractive);
-            if (!nextOpeningInteractive) setOpeningMenuOpen(false);
+            setMenuOnDark(self.progress >= 0.085 && self.progress < 0.315);
             setPrivateEnquiryVisible(self.progress >= 0.68 && self.progress < 0.9);
             setSecurityVisible(self.progress >= 0.88);
           },
         },
       });
 
-      timeline.to(openingPaper.current, { yPercent: -104, duration: 0.12 }, 0);
+      timeline
+        .to(
+          openingPaperContent.current,
+          { autoAlpha: 0, scale: 0.955, y: -24, duration: 0.1, ease: "power2.inOut" },
+          0,
+        )
+        .to(
+          openingPaperSurface.current,
+          { autoAlpha: 0, duration: 0.12, ease: "power1.inOut" },
+          0,
+        );
 
       const getServicesGridOffset = () => {
         const section = servicesSection.current;
@@ -325,19 +359,85 @@ export default function Home() {
       };
 
       timeline
-        .fromTo(aboutSection.current, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.04 }, 0.12)
-        .to(aboutSection.current, { autoAlpha: 0, y: -10, duration: 0.04 }, 0.27)
-        .fromTo(servicesSection.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.04 }, 0.31)
-        .fromTo(servicesGrid.current, { y: 0 }, { y: getServicesGridOffset, duration: 0.27 }, 0.35)
-        .to(servicesSection.current, { autoAlpha: 0, duration: 0.04 }, 0.64);
+        .set(aboutSection.current, { autoAlpha: 1 }, 0.11)
+        .to(
+          aboutRevealItems,
+          { autoAlpha: 1, y: 0, duration: 0.038, stagger: 0.014, ease: "power2.out" },
+          0.12,
+        )
+        .to(
+          aboutRevealItems,
+          { autoAlpha: 0, y: -12, duration: 0.035, stagger: 0.006, ease: "power2.in" },
+          0.265,
+        )
+        .set(aboutSection.current, { autoAlpha: 0 }, 0.31)
+        .set(servicesSection.current, { autoAlpha: 1 }, 0.305)
+        .to(
+          dividerLines,
+          { scale: 1, duration: 0.055, stagger: 0.012, ease: "power2.inOut" },
+          0.315,
+        );
+
+      if (isMobile) {
+        serviceItems.forEach((item, index) => {
+          timeline.to(
+            Array.from(item.children),
+            { autoAlpha: 1, y: 0, duration: 0.028, stagger: 0.012, ease: "power2.out" },
+            0.325 + index * 0.073,
+          );
+        });
+      } else {
+        timeline.to(
+          serviceRevealItems,
+          { autoAlpha: 1, y: 0, duration: 0.028, stagger: 0.007, ease: "power2.out" },
+          0.325,
+        );
+      }
 
       timeline
-        .fromTo(finalPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.64)
-        .fromTo(privateEnquiryCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.05 }, 0.7)
-        .to(privateEnquiryCopy.current, { opacity: 0, y: -10, duration: 0.04 }, 0.85)
-        .fromTo(securityPaper.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.88)
-        .fromTo(securityCopy.current, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.04 }, 0.9)
-        .fromTo(securityNav.current, { opacity: 0 }, { opacity: 1, duration: 0.03 }, 0.95);
+        .fromTo(
+          servicesGrid.current,
+          { y: 0 },
+          { y: getServicesGridOffset, duration: 0.27, ease: "none" },
+          0.35,
+        )
+        .to(servicesSection.current, { autoAlpha: 0, duration: 0.04, ease: "power1.in" }, 0.64);
+
+      timeline
+        .fromTo(
+          finalPaper.current,
+          { autoAlpha: 0 },
+          { autoAlpha: 1, duration: 0.06, ease: "power1.inOut" },
+          0.64,
+        )
+        .set(privateEnquiryCopy.current, { opacity: 1 }, 0.675)
+        .to(
+          privateEnquiryRevealItems,
+          { autoAlpha: 1, y: 0, duration: 0.035, stagger: 0.012, ease: "power2.out" },
+          0.68,
+        )
+        .to(
+          privateEnquiryRevealItems,
+          { autoAlpha: 0, y: -10, duration: 0.032, stagger: 0.005, ease: "power2.in" },
+          0.845,
+        )
+        .fromTo(
+          securityPaper.current,
+          { autoAlpha: 0 },
+          { autoAlpha: 1, duration: 0.055, ease: "power1.inOut" },
+          0.88,
+        )
+        .set(securityCopy.current, { opacity: 1 }, 0.89)
+        .to(
+          securityRevealItems,
+          { autoAlpha: 1, y: 0, duration: 0.032, stagger: 0.01, ease: "power2.out" },
+          0.895,
+        )
+        .to(
+          securityNav.current,
+          { autoAlpha: 1, y: 0, duration: 0.03, ease: "power2.out" },
+          0.955,
+        );
     }, experience);
 
     let hashFrame = 0;
@@ -392,8 +492,9 @@ export default function Home() {
         <LetterpressDefinitions />
         <div className="textile" aria-hidden="true" />
 
-        <div ref={openingPaper} className="opening-paper">
-          <div className="opening-paper-content">
+        <div className="opening-paper">
+          <div ref={openingPaperSurface} className="opening-paper-surface" aria-hidden="true" />
+          <div ref={openingPaperContent} className="opening-paper-content">
             <svg
               className="blind-deboss-mark blind-deboss-mark-desktop"
               viewBox="0 0 500 287.5"
@@ -432,77 +533,77 @@ export default function Home() {
             </svg>
             <p className="opening-paper-subheading">Private Collection Management</p>
           </div>
-          <button
-            ref={openingMenuButton}
-            type="button"
-            className="opening-menu-trigger"
-            aria-expanded={openingMenuOpen}
-            aria-controls="opening-menu-drawer"
-            tabIndex={openingInteractive ? 0 : -1}
-            onClick={() => setOpeningMenuOpen(true)}
-          >
-            Menu <span aria-hidden="true">+</span>
-          </button>
+        </div>
 
+        <button
+          ref={openingMenuButton}
+          type="button"
+          className={`opening-menu-trigger${menuOnDark ? " is-on-dark" : ""}`}
+          aria-expanded={openingMenuOpen}
+          aria-controls="opening-menu-drawer"
+          onClick={() => setOpeningMenuOpen(true)}
+        >
+          Menu <span aria-hidden="true">+</span>
+        </button>
+
+        <button
+          type="button"
+          className={`opening-menu-scrim${openingMenuOpen ? " is-open" : ""}`}
+          aria-label="Close menu"
+          aria-hidden={!openingMenuOpen}
+          tabIndex={openingMenuOpen ? 0 : -1}
+          onClick={() => closeOpeningMenu(true)}
+        />
+
+        <aside
+          id="opening-menu-drawer"
+          ref={openingMenuDrawer}
+          className={`opening-menu-drawer${openingMenuOpen ? " is-open" : ""}`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Website menu"
+          aria-hidden={!openingMenuOpen}
+        >
           <button
+            ref={openingMenuCloseButton}
             type="button"
-            className={`opening-menu-scrim${openingMenuOpen ? " is-open" : ""}`}
-            aria-label="Close menu"
-            aria-hidden={!openingMenuOpen}
+            className="opening-menu-close"
             tabIndex={openingMenuOpen ? 0 : -1}
             onClick={() => closeOpeningMenu(true)}
-          />
-
-          <aside
-            id="opening-menu-drawer"
-            ref={openingMenuDrawer}
-            className={`opening-menu-drawer${openingMenuOpen ? " is-open" : ""}`}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Website menu"
-            aria-hidden={!openingMenuOpen}
           >
-            <button
-              ref={openingMenuCloseButton}
-              type="button"
-              className="opening-menu-close"
-              tabIndex={openingMenuOpen ? 0 : -1}
-              onClick={() => closeOpeningMenu(true)}
-            >
-              Close <span aria-hidden="true">−</span>
-            </button>
+            Close <span aria-hidden="true">−</span>
+          </button>
 
-            <nav className="opening-menu-links" aria-label="Opening navigation">
-              <a
-                href="#private-client-access"
-                tabIndex={openingMenuOpen ? 0 : -1}
-                onClick={(event) => {
-                  closeOpeningMenu();
-                  handleChapterClick(event, chapterScrollProgress.privateClient);
-                }}
-              >
-                <span>Private Client Access</span>
-                <span className="opening-menu-arrow" aria-hidden="true">→</span>
-              </a>
-              <Link
-                href="/professional-access"
-                tabIndex={openingMenuOpen ? 0 : -1}
-                onClick={() => closeOpeningMenu()}
-              >
-                <span>Professional Access</span>
-                <span className="opening-menu-arrow" aria-hidden="true">→</span>
-              </Link>
-              <Link
-                href="/private-enquiry"
-                tabIndex={openingMenuOpen ? 0 : -1}
-                onClick={() => closeOpeningMenu()}
-              >
-                <span>Private Enquiry</span>
-                <span className="opening-menu-arrow" aria-hidden="true">→</span>
-              </Link>
-            </nav>
-          </aside>
-        </div>
+          <nav className="opening-menu-links" aria-label="Opening navigation">
+            <a
+              href="#private-client-access"
+              tabIndex={openingMenuOpen ? 0 : -1}
+              onClick={(event) => {
+                closeOpeningMenu();
+                handleChapterClick(event, chapterScrollProgress.privateClient);
+              }}
+            >
+              <span>Private Client Access</span>
+              <span className="opening-menu-arrow" aria-hidden="true">→</span>
+            </a>
+            <Link
+              href="/professional-access"
+              tabIndex={openingMenuOpen ? 0 : -1}
+              onClick={() => closeOpeningMenu()}
+            >
+              <span>Professional Access</span>
+              <span className="opening-menu-arrow" aria-hidden="true">→</span>
+            </Link>
+            <Link
+              href="/private-enquiry"
+              tabIndex={openingMenuOpen ? 0 : -1}
+              onClick={() => closeOpeningMenu()}
+            >
+              <span>Private Enquiry</span>
+              <span className="opening-menu-arrow" aria-hidden="true">→</span>
+            </Link>
+          </nav>
+        </aside>
 
         <section
           id={aboutChapter.id}
@@ -552,6 +653,13 @@ export default function Home() {
                 </article>
               );
             })}
+            <div ref={servicesDividers} className="services-grid-dividers" aria-hidden="true">
+              <span className="services-grid-divider services-grid-divider-vertical" />
+              <span className="services-grid-divider services-grid-divider-horizontal" />
+              <span className="services-grid-divider services-grid-divider-mobile services-grid-divider-mobile-one" />
+              <span className="services-grid-divider services-grid-divider-mobile services-grid-divider-mobile-two" />
+              <span className="services-grid-divider services-grid-divider-mobile services-grid-divider-mobile-three" />
+            </div>
           </div>
         </section>
 
