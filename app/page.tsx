@@ -671,7 +671,11 @@ export default function Home() {
               An enquiry may be made by a collector, family office, personal assistant or other authorised
               representative. All information submitted is treated in confidence.
             </p>
-            <Link href="/private-enquiry" className="invitation-link" tabIndex={privateEnquiryVisible ? 0 : -1}>
+            <Link
+              href="/private-enquiry"
+              className="invitation-link invitation-link--olive"
+              tabIndex={privateEnquiryVisible ? 0 : -1}
+            >
               <span>Apply for a Vaultier Account</span>
             </Link>
           </div>

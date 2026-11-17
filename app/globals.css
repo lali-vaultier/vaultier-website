@@ -180,6 +180,14 @@ a { color: inherit; }
 .submit-button > span { filter: url(#letterpress-fine); text-rendering: geometricPrecision; }
 .invitation-link:hover,
 .submit-button:hover:not(:disabled) { color: color-mix(in srgb, var(--olive-green) 82%, var(--wild-brown)); }
+.invitation-link--olive,
+.invitation-link--olive:hover {
+  background-color: var(--olive-green);
+  color: var(--off-white);
+}
+.invitation-link--olive:focus-visible {
+  outline-color: var(--olive-green);
+}
 .invitation-link:hover::before,
 .submit-button:hover:not(:disabled)::before {
   box-shadow:
