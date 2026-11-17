@@ -23,7 +23,7 @@ export default function ProfessionalAccessLayout({ children }: { children: React
           <Link href="/privacy">Privacy</Link>
           <Link href="/#security">Security</Link>
           <Link href="/terms">Terms</Link>
-          <a href="mailto:operations@accessvaultier.co">Contact</a>
+          <a href="mailto:applications@accessvaultier.co">Contact</a>
         </nav>
       </footer>
     </main>

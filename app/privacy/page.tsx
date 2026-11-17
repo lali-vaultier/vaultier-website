@@ -201,7 +201,7 @@ export default function PrivacyPage() {
             <p><strong className="legal-label">Right to object:</strong> You may object to processing based on legitimate interests in circumstances provided by applicable law. You have the right to object at any time to the processing of your personal information for direct marketing.</p>
             <p>These rights are not absolute and may be subject to legal exceptions.</p>
             <p>For example, a request to erase information may not require Vaultier to delete records that must lawfully be retained or information that is necessary for establishing, exercising or defending legal claims.</p>
-            <p>To exercise a privacy right, please contact <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a>.</p>
+            <p>To exercise a privacy right, please contact <a href="mailto:applications@accessvaultier.co">applications@accessvaultier.co</a>.</p>
             <p>We may request reasonable information to verify your identity before responding.</p>
             <p>Individuals may also lodge a complaint with the relevant data protection supervisory authority. For matters subject to UK data protection law, the relevant authority is the Information Commissioner&apos;s Office (ICO), accessible at <a href="https://ico.org.uk">https://ico.org.uk</a>.</p>
           </section>
@@ -258,7 +258,7 @@ export default function PrivacyPage() {
               <strong>VAULTIER</strong><br />
               <span className="legal-label">Legal entity:</span> VAULTIER FZ-LLC<br />
               <span className="legal-label">Registered address:</span> VUNE2853, Compass Building - Al Hulaila, Al Hulaila Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates<br />
-              <span className="legal-label">General enquiries:</span> <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a><br />
+              <span className="legal-label">General enquiries:</span> <a href="mailto:applications@accessvaultier.co">applications@accessvaultier.co</a><br />
               <span className="legal-label">Website:</span> <a href="https://vaultier.co">https://vaultier.co</a>
             </address>
             <p>Where required, details of Vaultier&apos;s appointed data protection officer or UK representative will also be made available.</p>

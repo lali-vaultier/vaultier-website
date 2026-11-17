@@ -709,7 +709,7 @@ export default function Home() {
               Security
             </a>
             <Link href="/terms" tabIndex={securityVisible ? 0 : -1}>Terms</Link>
-            <a href="mailto:operations@accessvaultier.co" tabIndex={securityVisible ? 0 : -1}>Contact</a>
+            <a href="mailto:applications@accessvaultier.co" tabIndex={securityVisible ? 0 : -1}>Contact</a>
           </nav>
         </div>
       </section>

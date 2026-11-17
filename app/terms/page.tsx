@@ -201,7 +201,7 @@ export default function TermsPage() {
               <strong>VAULTIER</strong><br />
               <span className="legal-label">Legal entity:</span> VAULTIER FZ-LLC<br />
               <span className="legal-label">Registered address:</span> VUNE2853, Compass Building - Al Hulaila, Al Hulaila Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates<br />
-              <span className="legal-label">General enquiries:</span> <a href="mailto:operations@accessvaultier.co">operations@accessvaultier.co</a><br />
+              <span className="legal-label">General enquiries:</span> <a href="mailto:applications@accessvaultier.co">applications@accessvaultier.co</a><br />
               <span className="legal-label">Website:</span> <a href="https://vaultier.co">https://vaultier.co</a>
             </address>
           </section>
