@@ -322,7 +322,7 @@ export default function Home() {
           scrub: 0.65,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            setMenuOnDark(self.progress >= 0.085 && self.progress < 0.315);
+            setMenuOnDark(self.progress >= 0.085 && self.progress < 0.305);
             setPrivateEnquiryVisible(self.progress >= 0.68 && self.progress < 0.9);
             setSecurityVisible(self.progress >= 0.88);
           },
@@ -554,7 +554,7 @@ export default function Home() {
         <aside
           id="opening-menu-drawer"
           ref={openingMenuDrawer}
-          className={`opening-menu-drawer${openingMenuOpen ? " is-open" : ""}`}
+          className={`opening-menu-drawer${menuOnDark ? " is-on-dark" : ""}${openingMenuOpen ? " is-open" : ""}`}
           role="dialog"
           aria-modal="true"
           aria-label="Website menu"
