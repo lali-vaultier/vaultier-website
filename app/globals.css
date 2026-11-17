@@ -102,13 +102,19 @@ a { color: inherit; }
   will-change: opacity;
 }
 .opening-paper-content {
-  position: relative;
+  position: absolute;
   z-index: 1;
+  inset: 0;
   display: grid;
-  justify-items: center;
-  width: min(918px, 88vw);
+  place-items: center;
+  width: 100%;
   transform-origin: 50% 46%;
   will-change: opacity, transform;
+}
+.opening-logo-wrap {
+  display: grid;
+  place-items: center;
+  width: min(1055.7px, 96vw);
 }
 .blind-deboss-mark {
   display: block;
@@ -119,29 +125,35 @@ a { color: inherit; }
 }
 .blind-deboss-mark-desktop { transform: translateX(-.85%); }
 .blind-deboss-mark-mobile { display: none; }
-.blind-deboss-mark-highlight { fill: rgba(255, 252, 246, .62); }
-.blind-deboss-mark-shadow { fill: rgba(66, 51, 31, .22); }
+.blind-deboss-mark-highlight { fill: rgba(255, 241, 193, .56); }
+.blind-deboss-mark-shadow { fill: rgba(71, 43, 13, .28); }
 .blind-deboss-mark-face {
   fill: color-mix(in srgb, var(--off-white) 88%, var(--murky-grey));
   opacity: .72;
 }
 .opening-vltr-metal-face {
-  opacity: .98;
+  opacity: .97;
   shape-rendering: geometricPrecision;
 }
 .opening-paper-subheading {
+  position: absolute;
+  top: calc(clamp(24px, 3vw, 38px) - 17px);
+  left: calc(clamp(28px, 5vw, 72px) - 10px);
+  display: flex;
+  align-items: center;
+  min-height: 44px;
   margin: 0;
-  transform: translateY(clamp(-114px, -11.2vw, -80px));
   color: var(--wild-brown);
   font-family: var(--font-body);
-  font-size: clamp(10px, .75vw, 12px);
+  font-size: clamp(9px, .7vw, 11px);
   font-style: normal;
   font-weight: 300;
   letter-spacing: .14em;
   line-height: 1.2;
-  text-align: center;
+  text-align: left;
   text-rendering: geometricPrecision;
   text-transform: uppercase;
+  white-space: nowrap;
   filter: url(#letterpress-display);
 }
 .invitation-link,
@@ -1390,14 +1402,14 @@ a { color: inherit; }
 
 @media (max-width: 760px) {
   .blind-deboss-mark-desktop { display: none; }
-  .blind-deboss-mark-mobile { display: block; width: min(290px, 68vw); max-height: 76svh; }
-  .opening-paper-content { width: 86vw; }
+  .blind-deboss-mark-mobile { display: block; width: 100%; max-height: 87.4svh; }
+  .opening-logo-wrap { width: min(333.5px, 78.2vw); max-height: 87.4svh; }
   .opening-paper-subheading {
-    max-width: 78vw;
-    margin-top: 0;
-    transform: translateY(-48px);
-    font-size: clamp(9px, 2.7vw, 11px);
-    letter-spacing: .14em;
+    top: 5px;
+    left: 12px;
+    max-width: calc(100vw - 100px);
+    font-size: 8px;
+    letter-spacing: .12em;
   }
   .editorial-copy { width: 86vw; }
   .editorial-copy h1,

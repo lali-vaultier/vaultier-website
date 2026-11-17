@@ -125,15 +125,61 @@ function MetallicInlayDefinitions({
         x2={width}
         y2="0"
       >
-        <stop offset="0" stopColor="#242829" />
-        <stop offset="0.18" stopColor="#383e40" />
-        <stop offset="0.4" stopColor="#555c5f" />
-        <stop offset="0.47" stopColor="#7b8386" />
-        <stop offset="0.515" stopColor="#a8aeb0" />
-        <stop offset="0.565" stopColor="#626a6d" />
-        <stop offset="0.76" stopColor="#2f3436" />
-        <stop offset="1" stopColor="#4c5355" />
+        <stop offset="0" stopColor="#473214" />
+        <stop offset="0.18" stopColor="#74521e" />
+        <stop offset="0.4" stopColor="#a77a2f" />
+        <stop offset="0.48" stopColor="#d2ad59" />
+        <stop offset="0.525" stopColor="#f0dda0" />
+        <stop offset="0.585" stopColor="#bd8d35" />
+        <stop offset="0.78" stopColor="#6e4918" />
+        <stop offset="1" stopColor="#99702a" />
       </linearGradient>
+      <filter
+        id={`${id}-gilt-texture`}
+        x="-4%"
+        y="-6%"
+        width="108%"
+        height="112%"
+        colorInterpolationFilters="sRGB"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.82 0.34"
+          numOctaves={2}
+          seed={17}
+          result="gilt-noise"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="gilt-noise"
+          scale="0.28"
+          xChannelSelector="R"
+          yChannelSelector="B"
+          result="worn-gilt"
+        />
+        <feGaussianBlur in="gilt-noise" stdDeviation="0.42" result="soft-gilt-noise" />
+        <feSpecularLighting
+          in="soft-gilt-noise"
+          surfaceScale="0.72"
+          specularConstant="0.18"
+          specularExponent="18"
+          lightingColor="#f8e7ae"
+          result="gilt-light"
+        >
+          <feDistantLight azimuth="225" elevation="52" />
+        </feSpecularLighting>
+        <feComposite in="gilt-light" in2="SourceAlpha" operator="in" result="gilt-light-mask" />
+        <feBlend in="worn-gilt" in2="gilt-light-mask" mode="screen" result="lit-gilt" />
+        <feColorMatrix in="gilt-noise" type="saturate" values="0" result="mono-gilt-noise" />
+        <feComponentTransfer in="mono-gilt-noise" result="gilt-grain">
+          <feFuncR type="linear" slope="0.3" intercept="0.35" />
+          <feFuncG type="linear" slope="0.24" intercept="0.28" />
+          <feFuncB type="linear" slope="0.12" intercept="0.1" />
+          <feFuncA type="table" tableValues="0 0.14" />
+        </feComponentTransfer>
+        <feComposite in="gilt-grain" in2="SourceAlpha" operator="in" result="gilt-grain-mask" />
+        <feBlend in="lit-gilt" in2="gilt-grain-mask" mode="soft-light" />
+      </filter>
     </defs>
   );
 }
@@ -491,43 +537,53 @@ export default function Home() {
         <div className="opening-paper">
           <div ref={openingPaperSurface} className="opening-paper-surface" aria-hidden="true" />
           <div ref={openingPaperContent} className="opening-paper-content">
-            <svg
-              className="blind-deboss-mark blind-deboss-mark-desktop"
-              viewBox="0 0 500 287.5"
-              role="img"
-              aria-label="Vaultier abbreviation"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <MetallicInlayDefinitions id="opening-vltr-metal-desktop" width={500} height={287.5} />
-              <g className="blind-deboss-mark-highlight" transform="translate(0.65 0.72)">
-                <VltrDesktopPaths prefix="deboss-highlight" />
-              </g>
-              <g className="blind-deboss-mark-shadow" transform="translate(-0.68 -0.76)">
-                <VltrDesktopPaths prefix="deboss-shadow" />
-              </g>
-              <g className="opening-vltr-metal-face" fill="url(#opening-vltr-metal-desktop)">
-                <VltrDesktopPaths prefix="deboss-face" />
-              </g>
-            </svg>
-            <svg
-              className="blind-deboss-mark blind-deboss-mark-mobile"
-              viewBox="0 0 150 700"
-              role="img"
-              aria-label="Vaultier abbreviation"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <MetallicInlayDefinitions id="opening-vltr-metal-mobile" width={150} height={700} />
-              <g className="blind-deboss-mark-highlight" transform="translate(0.65 0.72)">
-                <VltrMobilePaths prefix="deboss-mobile-highlight" />
-              </g>
-              <g className="blind-deboss-mark-shadow" transform="translate(-0.68 -0.76)">
-                <VltrMobilePaths prefix="deboss-mobile-shadow" />
-              </g>
-              <g className="opening-vltr-metal-face" fill="url(#opening-vltr-metal-mobile)">
-                <VltrMobilePaths prefix="deboss-mobile-face" />
-              </g>
-            </svg>
             <p className="opening-paper-subheading">Private Collection Management</p>
+            <div className="opening-logo-wrap">
+              <svg
+                className="blind-deboss-mark blind-deboss-mark-desktop"
+                viewBox="0 0 500 287.5"
+                role="img"
+                aria-label="Vaultier abbreviation"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <MetallicInlayDefinitions id="opening-vltr-metal-desktop" width={500} height={287.5} />
+                <g className="blind-deboss-mark-highlight" transform="translate(0.52 0.56)">
+                  <VltrDesktopPaths prefix="deboss-highlight" />
+                </g>
+                <g className="blind-deboss-mark-shadow" transform="translate(-0.54 -0.58)">
+                  <VltrDesktopPaths prefix="deboss-shadow" />
+                </g>
+                <g
+                  className="opening-vltr-metal-face"
+                  fill="url(#opening-vltr-metal-desktop)"
+                  filter="url(#opening-vltr-metal-desktop-gilt-texture)"
+                >
+                  <VltrDesktopPaths prefix="deboss-face" />
+                </g>
+              </svg>
+              <svg
+                className="blind-deboss-mark blind-deboss-mark-mobile"
+                viewBox="0 0 150 700"
+                role="img"
+                aria-label="Vaultier abbreviation"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <MetallicInlayDefinitions id="opening-vltr-metal-mobile" width={150} height={700} />
+                <g className="blind-deboss-mark-highlight" transform="translate(0.52 0.56)">
+                  <VltrMobilePaths prefix="deboss-mobile-highlight" />
+                </g>
+                <g className="blind-deboss-mark-shadow" transform="translate(-0.54 -0.58)">
+                  <VltrMobilePaths prefix="deboss-mobile-shadow" />
+                </g>
+                <g
+                  className="opening-vltr-metal-face"
+                  fill="url(#opening-vltr-metal-mobile)"
+                  filter="url(#opening-vltr-metal-mobile-gilt-texture)"
+                >
+                  <VltrMobilePaths prefix="deboss-mobile-face" />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
 
