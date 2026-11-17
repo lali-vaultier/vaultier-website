@@ -31,6 +31,7 @@ a { color: inherit; }
 .editorial-page,
 .legal-page,
 .professional-page,
+.private-client-access-page,
 .form-frame {
   background-color: var(--paper);
   background-image:
@@ -44,6 +45,7 @@ a { color: inherit; }
 
 .opening-paper,
 .final-paper,
+.private-client-access-page,
 .form-frame {
   background-color: var(--off-white);
   background-image:
@@ -592,6 +594,31 @@ a { color: inherit; }
   text-wrap: balance;
 }
 .invitation-link { justify-self: center; margin-top: 42px; padding: 15px 30px; }
+
+/* Private client access */
+.private-client-access-page {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding-block: clamp(64px, 8vw, 108px);
+  overflow-x: hidden;
+  color: var(--deep-teal-blue);
+}
+.private-client-access-copy {
+  position: relative;
+  inset: auto;
+  visibility: visible;
+  opacity: 1;
+}
+.private-client-access-copy h1 {
+  width: 100%;
+  color: var(--deep-teal-blue);
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: .98;
+  filter: url(#letterpress-display);
+  text-rendering: geometricPrecision;
+}
 
 /* Professional access */
 .professional-page {
@@ -1422,6 +1449,7 @@ a { color: inherit; }
   .invitation-copy h2 { font-size: clamp(40px, 11vw, 58px); line-height: .96; }
   .invitation-copy .body-copy { width: 80vw; margin-top: 28px; }
   .security-copy h2 { font-size: clamp(38px, 10.5vw, 50px); }
+  .private-client-access-copy h1 { font-size: clamp(38px, 10.5vw, 50px); }
   .security-subheading { margin-top: 17px; font-size: 22px; }
   .security-copy .body-copy { margin-top: 18px; font-size: 12px; line-height: 1.55; }
   .security-copy .body-copy-followup { margin-top: 12px; }

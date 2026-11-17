@@ -13,7 +13,7 @@ export default function ProfessionalAccessLayout({ children }: { children: React
           <span className="professional-brand-subheading">Private Collection Management</span>
         </Link>
         <nav className="professional-navigation" aria-label="Primary navigation">
-          <Link href="/#private-client-access">Private Client Access</Link>
+          <Link href="/private-client-access">Private Client Access</Link>
           <Link href="/professional-access" aria-current="page">Professional Access</Link>
           <Link href="/private-enquiry">Private Enquiry</Link>
         </nav>

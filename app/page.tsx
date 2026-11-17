@@ -22,10 +22,6 @@ const mobileLetterLayout = [
 const chapterScrollProgress = {
   about: 0.16,
   services: 0.36,
-  privateClient: {
-    desktop: 0.36,
-    mobile: 0.615,
-  },
   security: 1,
 } as const;
 
@@ -575,17 +571,14 @@ export default function Home() {
           </button>
 
           <nav className="opening-menu-links" aria-label="Opening navigation">
-            <a
-              href="#private-client-access"
+            <Link
+              href="/private-client-access"
               tabIndex={openingMenuOpen ? 0 : -1}
-              onClick={(event) => {
-                closeOpeningMenu();
-                handleChapterClick(event, chapterScrollProgress.privateClient);
-              }}
+              onClick={() => closeOpeningMenu()}
             >
               <span>Private Client Access</span>
               <span className="opening-menu-arrow" aria-hidden="true">→</span>
-            </a>
+            </Link>
             <Link
               href="/professional-access"
               tabIndex={openingMenuOpen ? 0 : -1}
