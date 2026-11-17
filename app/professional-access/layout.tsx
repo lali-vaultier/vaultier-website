@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import VltrEngravedMark from "../components/VltrEngravedMark";
+import ProfessionalMenu from "./ProfessionalMenu";
 
 export default function ProfessionalAccessLayout({ children }: { children: ReactNode }) {
   return (
@@ -10,14 +11,10 @@ export default function ProfessionalAccessLayout({ children }: { children: React
       <header className="professional-header">
         <Link href="/" className="professional-brand" aria-label="Vaultier home">
           <span className="professional-brand-mark"><VltrEngravedMark /></span>
-          <span className="professional-brand-subheading">Private Collection Management</span>
         </Link>
-        <nav className="professional-navigation" aria-label="Primary navigation">
-          <Link href="/private-client-access">Private Client Access</Link>
-          <Link href="/professional-access" aria-current="page">Professional Access</Link>
-          <Link href="/private-enquiry">Private Enquiry</Link>
-        </nav>
       </header>
+
+      <ProfessionalMenu />
 
       {children}
 
