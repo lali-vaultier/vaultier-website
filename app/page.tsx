@@ -689,7 +689,7 @@ export default function Home() {
         >
           <div ref={securityCopy} className="editorial-copy invitation-copy security-copy">
             <h2 className="homepage-editorial-heading">Privacy and Security</h2>
-            <p className="security-subheading">Your privacy is our utmost concern.</p>
+            <p className="security-subheading">Your privacy is of our utmost concern.</p>
             <p className="body-copy final-body-copy">
               Vaultier uses encrypted systems and permission-based access to protect sensitive collection information.
               Item locations are visible only to people who have been expressly authorised.
