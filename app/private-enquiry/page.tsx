@@ -15,11 +15,6 @@ export default function PrivateEnquiryPage() {
           <span aria-hidden="true">←</span>
           Go back
         </Link>
-        <nav className="form-route-nav" aria-label="Website navigation">
-          <Link href="/">Home</Link>
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/terms">Terms</Link>
-        </nav>
       </header>
       <section className="form-frame" aria-label="Private enquiry letter">
         <FormLetterpressDefinitions />
