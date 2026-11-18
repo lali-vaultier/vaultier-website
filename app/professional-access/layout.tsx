@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import VltrEngravedMark from "../components/VltrEngravedMark";
 import ProfessionalMenu from "./ProfessionalMenu";
 
 export default function ProfessionalAccessLayout({ children }: { children: ReactNode }) {
@@ -9,8 +8,9 @@ export default function ProfessionalAccessLayout({ children }: { children: React
       <ProfessionalLetterpressDefinitions />
 
       <header className="professional-header">
-        <Link href="/" className="professional-brand" aria-label="Vaultier home">
-          <span className="professional-brand-mark"><VltrEngravedMark /></span>
+        <Link href="/" className="professional-home-link" aria-label="Return to the Vaultier home page">
+          <span aria-hidden="true">←</span>
+          Home
         </Link>
       </header>
 
