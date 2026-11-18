@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivateEnquiryPage() {
   return (
-    <main className="form-page">
+    <main className="form-page private-enquiry-form-page">
       <header className="form-topbar">
         <Link className="form-back-link" href="/" aria-label="Go back to the Vaultier invitation">
           <span aria-hidden="true">←</span>

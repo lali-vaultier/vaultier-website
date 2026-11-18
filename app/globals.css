@@ -1251,6 +1251,20 @@ body:has(.legal-page) { background: var(--charcoal); }
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
   pointer-events: none;
 }
+.private-enquiry-form-page {
+  grid-template-rows: minmax(34px, 1fr) auto minmax(0, 1fr);
+  gap: 0;
+}
+.private-enquiry-form-page .form-topbar {
+  grid-row: 1;
+  align-self: start;
+}
+.private-enquiry-form-page .form-frame {
+  grid-row: 2;
+  align-self: center;
+  height: auto;
+  padding-bottom: clamp(44px, 5.6vh, 60px);
+}
 .form-page .submit-button > span { filter: url(#form-letterpress-fine); }
 .form-topbar {
   position: relative;
@@ -1510,6 +1524,8 @@ body:has(.legal-page) { background: var(--charcoal); }
   }
   .form-page { gap: 10px; padding-top: 14px; padding-bottom: 14px; }
   .form-frame { padding-top: 40px; padding-bottom: 18px; }
+  .private-enquiry-form-page { gap: 0; }
+  .private-enquiry-form-page .form-frame { padding-bottom: 40px; }
   .form-header { margin-bottom: 62px; }
   .form-header h1 {
     font-size: clamp(42px, 4vw, 58px);
@@ -1697,6 +1713,10 @@ body:has(.legal-page) { background: var(--charcoal); }
     height: auto;
     min-height: calc(100svh - 88px);
     padding: 40px 22px 22px;
+  }
+  .private-enquiry-form-page .form-frame {
+    min-height: 0;
+    padding-bottom: 40px;
   }
   .form-header { margin-bottom: 34px; }
   .form-shell { width: 100%; }
