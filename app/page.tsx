@@ -125,14 +125,14 @@ function MetallicInlayDefinitions({
         x2={width}
         y2="0"
       >
-        <stop offset="0" stopColor="#473214" />
-        <stop offset="0.18" stopColor="#74521e" />
-        <stop offset="0.4" stopColor="#a77a2f" />
-        <stop offset="0.48" stopColor="#d2ad59" />
-        <stop offset="0.525" stopColor="#f0dda0" />
-        <stop offset="0.585" stopColor="#bd8d35" />
-        <stop offset="0.78" stopColor="#6e4918" />
-        <stop offset="1" stopColor="#99702a" />
+        <stop offset="0" stopColor="#241b11" />
+        <stop offset="0.18" stopColor="#332719" />
+        <stop offset="0.4" stopColor="#42331f" />
+        <stop offset="0.48" stopColor="#51402b" />
+        <stop offset="0.525" stopColor="#66533d" />
+        <stop offset="0.585" stopColor="#493824" />
+        <stop offset="0.78" stopColor="#2e2316" />
+        <stop offset="1" stopColor="#453521" />
       </linearGradient>
       <filter
         id={`${id}-gilt-texture`}
@@ -163,7 +163,7 @@ function MetallicInlayDefinitions({
           surfaceScale="0.72"
           specularConstant="0.18"
           specularExponent="18"
-          lightingColor="#f8e7ae"
+          lightingColor="#776550"
           result="gilt-light"
         >
           <feDistantLight azimuth="225" elevation="52" />
@@ -172,9 +172,9 @@ function MetallicInlayDefinitions({
         <feBlend in="worn-gilt" in2="gilt-light-mask" mode="screen" result="lit-gilt" />
         <feColorMatrix in="gilt-noise" type="saturate" values="0" result="mono-gilt-noise" />
         <feComponentTransfer in="mono-gilt-noise" result="gilt-grain">
-          <feFuncR type="linear" slope="0.3" intercept="0.35" />
-          <feFuncG type="linear" slope="0.24" intercept="0.28" />
-          <feFuncB type="linear" slope="0.12" intercept="0.1" />
+          <feFuncR type="linear" slope="0.12" intercept="0.16" />
+          <feFuncG type="linear" slope="0.09" intercept="0.12" />
+          <feFuncB type="linear" slope="0.06" intercept="0.07" />
           <feFuncA type="table" tableValues="0 0.14" />
         </feComponentTransfer>
         <feComposite in="gilt-grain" in2="SourceAlpha" operator="in" result="gilt-grain-mask" />

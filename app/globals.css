@@ -125,8 +125,8 @@ a { color: inherit; }
 }
 .blind-deboss-mark-desktop { transform: translateX(-.85%); }
 .blind-deboss-mark-mobile { display: none; }
-.blind-deboss-mark-highlight { fill: rgba(255, 241, 193, .56); }
-.blind-deboss-mark-shadow { fill: rgba(71, 43, 13, .28); }
+.blind-deboss-mark-highlight { fill: rgba(119, 101, 80, .36); }
+.blind-deboss-mark-shadow { fill: rgba(36, 27, 17, .34); }
 .blind-deboss-mark-face {
   fill: color-mix(in srgb, var(--off-white) 88%, var(--murky-grey));
   opacity: .72;
