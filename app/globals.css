@@ -1479,10 +1479,10 @@ body:has(.legal-page) { background: var(--charcoal); }
   background: var(--murky-grey);
 }
 .professional-application-form-page .form-back-link {
-  color: var(--deep-teal-blue);
+  color: var(--off-white);
 }
 .professional-application-form-page .form-back-link:hover {
-  color: color-mix(in srgb, var(--deep-teal-blue) 80%, var(--wild-brown));
+  color: var(--off-white);
 }
 .professional-application-form-page .form-frame {
   height: auto;
