@@ -202,6 +202,14 @@ a { color: inherit; }
 .submit-button--olive:focus-visible {
   outline-color: var(--olive-green);
 }
+.invitation-link--murky,
+.invitation-link--murky:hover {
+  background-color: var(--murky-grey);
+  color: var(--off-white);
+}
+.invitation-link--murky:focus-visible {
+  outline-color: var(--murky-grey);
+}
 .invitation-link:hover::before,
 .submit-button:hover:not(:disabled)::before {
   box-shadow:
