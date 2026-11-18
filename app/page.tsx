@@ -698,7 +698,7 @@ export default function Home() {
             </p>
             <Link
               href="/private-enquiry"
-              className="invitation-link invitation-link--murky"
+              className="invitation-link invitation-link--wild-brown"
               tabIndex={privateEnquiryVisible ? 0 : -1}
             >
               <span>Apply for a Vaultier Account</span>

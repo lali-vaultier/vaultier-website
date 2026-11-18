@@ -202,13 +202,13 @@ a { color: inherit; }
 .submit-button--olive:focus-visible {
   outline-color: var(--olive-green);
 }
-.invitation-link--murky,
-.invitation-link--murky:hover {
-  background-color: var(--murky-grey);
+.invitation-link--wild-brown,
+.invitation-link--wild-brown:hover {
+  background-color: var(--wild-brown);
   color: var(--off-white);
 }
-.invitation-link--murky:focus-visible {
-  outline-color: var(--murky-grey);
+.invitation-link--wild-brown:focus-visible {
+  outline-color: var(--wild-brown);
 }
 .invitation-link:hover::before,
 .submit-button:hover:not(:disabled)::before {
