@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -68,14 +68,6 @@ const serviceChapters = [
     ],
   },
 ] as const;
-
-type ChapterProgress = number | { desktop: number; mobile: number };
-
-function resolveChapterProgress(progress: ChapterProgress) {
-  if (typeof progress === "number") return progress;
-
-  return window.matchMedia("(max-width: 760px)").matches ? progress.mobile : progress.desktop;
-}
 
 function scrollToExperienceProgress(experience: HTMLElement, progress: number) {
   const scrollDistance = Math.max(0, experience.offsetHeight - window.innerHeight);
@@ -243,29 +235,6 @@ export default function Home() {
   const [menuOnDark, setMenuOnDark] = useState(false);
   const [privateEnquiryVisible, setPrivateEnquiryVisible] = useState(false);
   const [securityVisible, setSecurityVisible] = useState(false);
-
-  const handleChapterClick = (event: MouseEvent<HTMLAnchorElement>, progress: ChapterProgress) => {
-    event.preventDefault();
-    const target = event.currentTarget.getAttribute("href");
-
-    if (target?.startsWith("#")) {
-      window.history.pushState(null, "", target);
-    }
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      if (target?.startsWith("#")) {
-        document.querySelector(target)?.scrollIntoView({ block: "start" });
-      }
-    } else if (experience.current) {
-      scrollToExperienceProgress(experience.current, resolveChapterProgress(progress));
-    }
-
-    if (target?.startsWith("#")) {
-      window.requestAnimationFrame(() => {
-        (document.querySelector(target) as HTMLElement | null)?.focus({ preventScroll: true });
-      });
-    }
-  };
 
   const closeOpeningMenu = (restoreFocus = false) => {
     if (restoreFocus) {
@@ -757,13 +726,6 @@ export default function Home() {
           </div>
           <nav ref={securityNav} className="final-paper-nav" aria-label="Website navigation">
             <Link href="/privacy" tabIndex={securityVisible ? 0 : -1}>Privacy</Link>
-            <a
-              href="#security"
-              onClick={(event) => handleChapterClick(event, chapterScrollProgress.security)}
-              tabIndex={securityVisible ? 0 : -1}
-            >
-              Security
-            </a>
             <Link href="/terms" tabIndex={securityVisible ? 0 : -1}>Terms</Link>
             <a href="mailto:applications@accessvaultier.co" tabIndex={securityVisible ? 0 : -1}>Contact</a>
           </nav>
