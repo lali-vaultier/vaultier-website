@@ -21,7 +21,7 @@ export default function PrivateClientAccessPage() {
         <p className="security-subheading">
           Kindly apply for an account below, and we will be in touch
         </p>
-        <Link href="/private-enquiry" className="invitation-link">
+        <Link href="/private-enquiry" className="invitation-link invitation-link--olive">
           <span>Apply for a Vaultier Account</span>
         </Link>
       </section>
