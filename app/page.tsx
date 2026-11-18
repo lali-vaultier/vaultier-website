@@ -117,14 +117,14 @@ function MetallicInlayDefinitions({
         x2={width}
         y2="0"
       >
-        <stop offset="0" stopColor="#241b11" />
-        <stop offset="0.18" stopColor="#332719" />
-        <stop offset="0.4" stopColor="#42331f" />
-        <stop offset="0.48" stopColor="#51402b" />
-        <stop offset="0.525" stopColor="#66533d" />
-        <stop offset="0.585" stopColor="#493824" />
-        <stop offset="0.78" stopColor="#2e2316" />
-        <stop offset="1" stopColor="#453521" />
+        <stop offset="0" stopColor="#8f8a7e" />
+        <stop offset="0.18" stopColor="#9d978a" />
+        <stop offset="0.4" stopColor="#ada797" />
+        <stop offset="0.48" stopColor="#b8b2a5" />
+        <stop offset="0.525" stopColor="#c9c3b7" />
+        <stop offset="0.585" stopColor="#aaa496" />
+        <stop offset="0.78" stopColor="#918c80" />
+        <stop offset="1" stopColor="#a39d91" />
       </linearGradient>
       <filter
         id={`${id}-gilt-texture`}
@@ -144,7 +144,7 @@ function MetallicInlayDefinitions({
         <feDisplacementMap
           in="SourceGraphic"
           in2="gilt-noise"
-          scale="0.28"
+          scale="0.14"
           xChannelSelector="R"
           yChannelSelector="B"
           result="worn-gilt"
@@ -152,10 +152,10 @@ function MetallicInlayDefinitions({
         <feGaussianBlur in="gilt-noise" stdDeviation="0.42" result="soft-gilt-noise" />
         <feSpecularLighting
           in="soft-gilt-noise"
-          surfaceScale="0.72"
-          specularConstant="0.18"
+          surfaceScale="0.32"
+          specularConstant="0.08"
           specularExponent="18"
-          lightingColor="#776550"
+          lightingColor="#dedad1"
           result="gilt-light"
         >
           <feDistantLight azimuth="225" elevation="52" />
@@ -164,9 +164,9 @@ function MetallicInlayDefinitions({
         <feBlend in="worn-gilt" in2="gilt-light-mask" mode="screen" result="lit-gilt" />
         <feColorMatrix in="gilt-noise" type="saturate" values="0" result="mono-gilt-noise" />
         <feComponentTransfer in="mono-gilt-noise" result="gilt-grain">
-          <feFuncR type="linear" slope="0.12" intercept="0.16" />
-          <feFuncG type="linear" slope="0.09" intercept="0.12" />
-          <feFuncB type="linear" slope="0.06" intercept="0.07" />
+          <feFuncR type="linear" slope="0.08" intercept="0.1" />
+          <feFuncG type="linear" slope="0.08" intercept="0.1" />
+          <feFuncB type="linear" slope="0.08" intercept="0.1" />
           <feFuncA type="table" tableValues="0 0.14" />
         </feComponentTransfer>
         <feComposite in="gilt-grain" in2="SourceAlpha" operator="in" result="gilt-grain-mask" />
@@ -516,10 +516,10 @@ export default function Home() {
                 preserveAspectRatio="xMidYMid meet"
               >
                 <MetallicInlayDefinitions id="opening-vltr-metal-desktop" width={500} height={287.5} />
-                <g className="blind-deboss-mark-highlight" transform="translate(0.52 0.56)">
+                <g className="blind-deboss-mark-highlight" transform="translate(-0.52 -0.56)">
                   <VltrDesktopPaths prefix="deboss-highlight" />
                 </g>
-                <g className="blind-deboss-mark-shadow" transform="translate(-0.54 -0.58)">
+                <g className="blind-deboss-mark-shadow" transform="translate(0.54 0.58)">
                   <VltrDesktopPaths prefix="deboss-shadow" />
                 </g>
                 <g
@@ -538,10 +538,10 @@ export default function Home() {
                 preserveAspectRatio="xMidYMid meet"
               >
                 <MetallicInlayDefinitions id="opening-vltr-metal-mobile" width={150} height={700} />
-                <g className="blind-deboss-mark-highlight" transform="translate(0.52 0.56)">
+                <g className="blind-deboss-mark-highlight" transform="translate(-0.52 -0.56)">
                   <VltrMobilePaths prefix="deboss-mobile-highlight" />
                 </g>
-                <g className="blind-deboss-mark-shadow" transform="translate(-0.54 -0.58)">
+                <g className="blind-deboss-mark-shadow" transform="translate(0.54 0.58)">
                   <VltrMobilePaths prefix="deboss-mobile-shadow" />
                 </g>
                 <g
