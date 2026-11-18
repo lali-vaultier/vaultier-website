@@ -193,11 +193,14 @@ a { color: inherit; }
 .invitation-link:hover,
 .submit-button:hover:not(:disabled) { color: color-mix(in srgb, var(--olive-green) 82%, var(--wild-brown)); }
 .invitation-link--olive,
-.invitation-link--olive:hover {
+.invitation-link--olive:hover,
+.submit-button--olive,
+.submit-button--olive:hover:not(:disabled) {
   background-color: var(--olive-green);
   color: var(--off-white);
 }
-.invitation-link--olive:focus-visible {
+.invitation-link--olive:focus-visible,
+.submit-button--olive:focus-visible {
   outline-color: var(--olive-green);
 }
 .invitation-link:hover::before,
@@ -652,6 +655,16 @@ a { color: inherit; }
   line-height: .98;
   filter: url(#letterpress-display);
   text-rendering: geometricPrecision;
+}
+.form-back-link.private-client-home-link {
+  z-index: 2;
+  top: clamp(18px, 2.5vw, 30px);
+  left: clamp(18px, 4vw, 56px);
+  transform: none;
+  color: var(--deep-teal-blue);
+}
+.form-back-link.private-client-home-link:hover {
+  color: color-mix(in srgb, var(--deep-teal-blue) 82%, var(--olive-green));
 }
 
 /* Professional access */
@@ -1179,6 +1192,7 @@ a { color: inherit; }
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
   pointer-events: none;
 }
+.form-page .submit-button > span { filter: url(#form-letterpress-fine); }
 .form-topbar {
   position: relative;
   z-index: 2;

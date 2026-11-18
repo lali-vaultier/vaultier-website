@@ -81,7 +81,7 @@ export default function InvitationForm() {
         />
       </Field>
       <Field id="country" label="Country of residence" error={errors.country}><input id="country" name="country" autoComplete="country-name" required aria-invalid={!!errors.country} aria-describedby="country-error" /></Field>
-      <button className="submit-button" type="submit" disabled={status === "submitting" || status === "success" || status === "preview"}>
+      <button className="submit-button submit-button--olive" type="submit" disabled={status === "submitting" || status === "success" || status === "preview"}>
         <span>{status === "submitting" ? "Sending request…" : status === "success" ? "Request received" : status === "preview" ? "Preview complete" : "Submit Request"}</span>
       </button>
       <p className="form-status" role="status" aria-live="polite">

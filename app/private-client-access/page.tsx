@@ -10,6 +10,10 @@ export default function PrivateClientAccessPage() {
   return (
     <main className="private-client-access-page">
       <PrivateClientLetterpressDefinitions />
+      <Link className="form-back-link private-client-home-link" href="/" aria-label="Return to the Vaultier home page">
+        <span aria-hidden="true">←</span>
+        Home
+      </Link>
 
       <section
         className="editorial-copy invitation-copy security-copy private-client-access-copy"
