@@ -6,9 +6,6 @@ export const metadata: Metadata = {
   description: "Apply to support privately managed collections through the Vaultier professional network.",
 };
 
-const professionalSignInUrl =
-  process.env.NEXT_PUBLIC_PROFESSIONAL_SIGN_IN_URL || "https://accessvaultier.co/";
-
 export default function ProfessionalAccessPage() {
   return (
     <section className="professional-hero" aria-labelledby="professional-access-heading">
@@ -26,9 +23,9 @@ export default function ProfessionalAccessPage() {
         </p>
       </div>
       <div className="professional-actions">
-        <a className="professional-action professional-action-secondary" href={professionalSignInUrl}>
+        <Link className="professional-action professional-action-secondary" href="/professional-access/sign-in">
           <span>Professional Sign In</span>
-        </a>
+        </Link>
         <Link className="professional-action professional-action-primary" href="/professional-access/apply">
           <span>Apply to Join</span>
         </Link>

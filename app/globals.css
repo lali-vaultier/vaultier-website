@@ -669,6 +669,8 @@ a { color: inherit; }
 
 /* Professional access */
 .professional-page {
+  display: flex;
+  flex-direction: column;
   min-height: 100svh;
   color: var(--deep-teal-blue);
   background-color: var(--off-white);
@@ -750,6 +752,13 @@ a { color: inherit; }
   font-size: clamp(56px, 7vw, 100px);
   line-height: .94;
 }
+.professional-unavailable {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .professional-introduction {
   width: min(750px, 86vw);
   margin: clamp(36px, 4vw, 52px) auto 0;
@@ -762,6 +771,14 @@ a { color: inherit; }
   text-wrap: pretty;
 }
 .professional-introduction p + p { margin-top: 18px; }
+.professional-unavailable-subheading {
+  margin: clamp(28px, 3.4vw, 44px) 0 0;
+  color: color-mix(in srgb, var(--deep-teal-blue) 72%, var(--murky-grey));
+  font: italic 100 clamp(23px, 2.1vw, 32px)/1.15 var(--font-editorial), Georgia, serif;
+  text-wrap: balance;
+  filter: url(#professional-letterpress-display);
+  text-rendering: geometricPrecision;
+}
 .professional-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -769,6 +786,7 @@ a { color: inherit; }
   width: min(620px, 100%);
   margin: clamp(42px, 5vw, 64px) auto 0;
 }
+.professional-actions-single { grid-template-columns: minmax(0, 1fr); width: min(310px, 100%); }
 .professional-action,
 .professional-submit {
   position: relative;
@@ -1026,6 +1044,7 @@ a { color: inherit; }
   .professional-actions {
     margin-top: clamp(22px, 3.2svh, 30px);
   }
+  .professional-unavailable .professional-actions { margin-top: clamp(30px, 4svh, 42px); }
   .professional-action { min-height: 48px; padding-block: 14px; }
 }
 
@@ -1536,7 +1555,9 @@ a { color: inherit; }
   .professional-hero h1 { font-size: clamp(46px, 13vw, 64px); line-height: .94; }
   .professional-introduction { width: 84vw; margin-top: 32px; }
   .professional-introduction p { font-size: 13px; line-height: 1.7; }
+  .professional-unavailable-subheading { margin-top: 24px; font-size: 22px; }
   .professional-actions { grid-template-columns: 1fr; width: min(84vw, 420px); margin-top: 38px; }
+  .professional-actions-single { width: min(84vw, 310px); }
   .professional-application,
   .professional-membership { width: 88vw; }
   .professional-application { padding: 68px 0 86px; }
