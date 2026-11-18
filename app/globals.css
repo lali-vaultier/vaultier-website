@@ -1066,6 +1066,7 @@ a { color: inherit; }
     width: min(560px, 100%);
     margin-top: clamp(22px, 3.2svh, 30px);
   }
+  .professional-actions.professional-actions-single { width: min(310px, 100%); }
   .professional-unavailable .professional-actions { margin-top: clamp(30px, 4svh, 42px); }
   .professional-action { min-height: 48px; padding-block: 14px; }
 }
