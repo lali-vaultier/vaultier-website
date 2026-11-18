@@ -46,7 +46,7 @@ const serviceChapters = [
   {
     id: "white-glove",
     eyebrow: "White Glove",
-    heading: "Your Collection in Experienced Hands",
+    heading: "Your collection in experienced hands",
     paragraphs: [
       "Vaultier arranges the work each piece requires, from insurance and valuation to restoration, maintenance, transport and storage. A small team is dedicated to the care and maintenance of your collection.",
     ],
