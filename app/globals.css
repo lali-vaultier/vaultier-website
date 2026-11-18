@@ -1079,7 +1079,6 @@ a { color: inherit; }
   justify-content: space-between;
   min-height: 76px;
   padding: 16px clamp(24px, 5vw, 72px);
-  border-bottom: 1px solid rgba(173, 167, 151, .24);
 }
 .legal-home-link {
   display: inline-flex;
