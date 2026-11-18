@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SecondaryHeader from "../components/SecondaryHeader";
-import SiteFooter from "../components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Terms of Use — Vaultier",
@@ -22,7 +21,7 @@ export default function TermsPage() {
             </div>
             <div>
               <dt>Last updated</dt>
-              <dd>22 Oct 2026</dd>
+              <dd>18 Nov 2026</dd>
             </div>
           </dl>
         </header>
@@ -209,7 +208,6 @@ export default function TermsPage() {
           <p className="legal-end">End of Terms of Use</p>
         </div>
       </article>
-      <SiteFooter current="terms" />
     </main>
   );
 }
