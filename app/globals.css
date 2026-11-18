@@ -1036,7 +1036,6 @@ a { color: inherit; }
   display: flex;
   justify-content: center;
   padding: 34px clamp(24px, 5vw, 72px);
-  border-top: 1px solid rgba(66, 51, 31, .13);
 }
 .professional-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 30px; }
 .professional-footer a { color: color-mix(in srgb, var(--deep-teal-blue) 72%, var(--murky-grey)); }
@@ -1120,7 +1119,6 @@ a { color: inherit; }
   justify-content: center;
   gap: 32px;
   padding: 36px clamp(24px, 5vw, 72px);
-  border-top: 1px solid rgba(66, 51, 31, .13);
 }
 .site-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 28px; }
 .site-footer a { color: color-mix(in srgb, var(--deep-teal-blue) 72%, var(--murky-grey)); }
