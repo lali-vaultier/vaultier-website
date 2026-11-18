@@ -78,7 +78,7 @@ export default function ProfessionalApplicationForm() {
   const formLocked = status === "submitting" || status === "success" || status === "preview";
 
   return (
-    <form className="professional-form" onSubmit={handleSubmit} noValidate>
+    <form className="request-form professional-form" onSubmit={handleSubmit} noValidate>
       <div className="professional-honeypot" aria-hidden="true">
         <label htmlFor="faxNumber">Fax number</label>
         <input id="faxNumber" name="faxNumber" type="text" tabIndex={-1} autoComplete="off" />
@@ -152,13 +152,13 @@ export default function ProfessionalApplicationForm() {
         <input id="qualifications" name="qualifications" maxLength={500} />
       </Field>
 
-      <fieldset className="professional-field professional-insurance-field" aria-describedby="insurance-error">
+      <fieldset className="field professional-field professional-insurance-field" aria-describedby="insurance-error">
         <legend>Professional insurance</legend>
         <div className="professional-radio-group">
           <label><input type="radio" name="insurance" value="Yes" required /> <span>Yes</span></label>
           <label><input type="radio" name="insurance" value="No" required /> <span>No</span></label>
         </div>
-        <p className="professional-field-error" id="insurance-error">{errors.insurance || ""}</p>
+        <p className="field-error professional-field-error" id="insurance-error">{errors.insurance || ""}</p>
       </fieldset>
 
       <Field id="experience" label="Short description of experience" error={errors.experience} wide>
@@ -177,7 +177,7 @@ export default function ProfessionalApplicationForm() {
         <input id="referral" name="referral" maxLength={500} />
       </Field>
 
-      <button className="professional-submit" type="submit" disabled={formLocked}>
+      <button className="submit-button submit-button--olive professional-submit" type="submit" disabled={formLocked}>
         <span>
           {status === "submitting"
             ? "Sending application…"
@@ -189,7 +189,7 @@ export default function ProfessionalApplicationForm() {
         </span>
       </button>
 
-      <p className="professional-form-status" role="status" aria-live="polite">
+      <p className="form-status professional-form-status" role="status" aria-live="polite">
         {status === "success"
           ? "Thank you. Your application has been received for consideration."
           : status === "preview"
@@ -216,10 +216,10 @@ function Field({
   children: ReactNode;
 }) {
   return (
-    <div className={`professional-field${wide ? " professional-field-wide" : ""}`}>
+    <div className={`field professional-field${wide ? " field-wide professional-field-wide" : ""}`}>
       <label htmlFor={id}>{label}</label>
       {children}
-      <p className="professional-field-error" id={`${id}-error`}>{error || ""}</p>
+      <p className="field-error professional-field-error" id={`${id}-error`}>{error || ""}</p>
     </div>
   );
 }
@@ -299,11 +299,11 @@ function ProfessionalSelect({
   }
 
   return (
-    <div className={`professional-select${open ? " is-open" : ""}`} ref={rootRef}>
+    <div className={`brand-select professional-select${open ? " is-open" : ""}`} ref={rootRef}>
       <input type="hidden" name={name} value={value} />
       <button
         id={id}
-        className={`professional-select-trigger${value ? "" : " is-placeholder"}`}
+        className={`brand-select-trigger professional-select-trigger${value ? "" : " is-placeholder"}`}
         type="button"
         role="combobox"
         aria-haspopup="listbox"
@@ -319,12 +319,17 @@ function ProfessionalSelect({
         <span>{value || "Select below"}</span>
       </button>
       {open ? (
-        <div className="professional-select-menu" id={listboxId} role="listbox" aria-label="Professional disciplines">
+        <div
+          className="brand-select-menu professional-select-menu"
+          id={listboxId}
+          role="listbox"
+          aria-label="Professional disciplines"
+        >
           {options.map((option, index) => (
             <button
               key={option}
               id={`${id}-option-${index}`}
-              className={`professional-select-option${index === activeIndex ? " is-active" : ""}`}
+              className={`brand-select-option professional-select-option${index === activeIndex ? " is-active" : ""}`}
               type="button"
               role="option"
               aria-selected={value === option}
