@@ -727,6 +727,7 @@ export default function Home() {
           <nav ref={securityNav} className="final-paper-nav" aria-label="Website navigation">
             <Link href="/privacy" tabIndex={securityVisible ? 0 : -1}>Privacy</Link>
             <Link href="/terms" tabIndex={securityVisible ? 0 : -1}>Terms</Link>
+            <Link href="/disclaimer" tabIndex={securityVisible ? 0 : -1}>Disclaimer</Link>
             <a href="mailto:applications@accessvaultier.co" tabIndex={securityVisible ? 0 : -1}>Contact</a>
           </nav>
         </div>
