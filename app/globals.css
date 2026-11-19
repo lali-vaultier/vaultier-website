@@ -269,6 +269,7 @@ a { color: inherit; }
   right: calc(clamp(28px, 5vw, 72px) - 10px);
   transition: opacity .2s ease, color .2s ease;
 }
+.invitation-stage > .opening-menu-trigger { color: var(--wild-brown); }
 .opening-menu-trigger.is-on-dark { color: var(--off-white); }
 .opening-menu-trigger:hover { color: var(--olive-green); }
 .opening-menu-trigger[aria-expanded="true"] {
