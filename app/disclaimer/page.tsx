@@ -17,11 +17,11 @@ export default function DisclaimerPage() {
           <dl className="legal-dates">
             <div>
               <dt>Effective date</dt>
-              <dd>19 November 2026</dd>
+              <dd>19 Nov 2026</dd>
             </div>
             <div>
               <dt>Last updated</dt>
-              <dd>19 November 2026</dd>
+              <dd>19 Nov 2026</dd>
             </div>
           </dl>
         </header>
