@@ -556,13 +556,13 @@ a { color: inherit; }
 .services-grid-item .eyebrow {
   margin-bottom: 16px;
   color: var(--olive-green);
-  font-size: clamp(12px, calc(.75vw + 2px), 14px);
+  font-size: clamp(11px, calc(.75vw + 1px), 13px);
 }
 .services-grid-item .homepage-editorial-heading {
   width: 100%;
   margin: 0;
   color: var(--wild-brown);
-  font-size: clamp(24px, calc(2.1vw + 2px), 38px);
+  font-size: clamp(23px, calc(2.1vw + 1px), 37px);
   line-height: 1;
   letter-spacing: -.018em;
   text-wrap: balance;
@@ -573,7 +573,7 @@ a { color: inherit; }
   margin: 20px auto 0;
   color: var(--deep-teal-blue);
   font-family: var(--font-body);
-  font-size: clamp(13px, calc(.8vw + 2px), 15px);
+  font-size: clamp(12px, calc(.8vw + 1px), 14px);
   line-height: 1.6;
   text-align: center;
   text-wrap: balance;
@@ -1524,16 +1524,16 @@ body:has(.legal-page) { background: var(--charcoal); }
     padding: 24px 28px;
   }
   .services-grid-item .homepage-editorial-heading {
-    font-size: clamp(24px, calc(1.9vw + 2px), 32px);
+    font-size: clamp(23px, calc(1.9vw + 1px), 31px);
   }
   .services-grid-item .body-copy {
     margin-top: 14px;
-    font-size: clamp(13px, calc(.8vw + 2px), 14.5px);
+    font-size: clamp(12px, calc(.8vw + 1px), 13.5px);
     line-height: 1.5;
   }
   .services-grid-item .eyebrow {
     margin-bottom: 12px;
-    font-size: 12px;
+    font-size: 11px;
   }
   .form-page { gap: 10px; padding-top: 14px; padding-bottom: 14px; }
   .form-frame { padding-top: 40px; padding-bottom: 18px; }
@@ -1618,14 +1618,14 @@ body:has(.legal-page) { background: var(--charcoal); }
   .services-grid-divider-mobile-two { top: 50%; }
   .services-grid-divider-mobile-three { top: 75%; }
   .services-grid-item .homepage-editorial-heading {
-    font-size: clamp(34px, calc(9vw + 2px), 46px);
+    font-size: clamp(33px, calc(9vw + 1px), 45px);
     line-height: .98;
     white-space: normal;
   }
   .services-grid-item .body-copy {
     max-width: 38ch;
     margin-top: 20px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.65;
   }
   .services-grid-item .eyebrow {
